@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5ruclose7cbe"]
+
+[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="5_fsec5"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
+[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xjmnn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1g87"]
+radius = 7.04483
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_hg2kr")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_tc6eq")
+blackboard = NodePath("@Node@17936")
+actor = NodePath("")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("3_xo6hj")
+
+[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_q6sf1")
+
+[node name="ConditionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
+script = ExtResource("5_fsec5")
+
+[node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
+script = ExtResource("6_2bu6y")
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_q6sf1")
+
+[node name="ConditionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite"]
+script = ExtResource("5_fsec5")
+
+[node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite"]
+script = ExtResource("6_2bu6y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kq1ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7.95045, 7.68115)
+shape = SubResource("CircleShape2D_n1g87")
