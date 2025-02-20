@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=12 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
+[ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
@@ -26,6 +27,9 @@ size = Vector2(16.0997, 16.6642)
 [node name="EnemyTemplate" type="CharacterBody2D"]
 script = ExtResource("1_hg2kr")
 
+[node name="VisionCone2D" parent="." instance=ExtResource("2_agbh0")]
+position = Vector2(156, 168)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kq1ep")
 
@@ -39,7 +43,7 @@ path_postprocessing = 1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@17265")
+blackboard = NodePath("@Node@17271")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
