@@ -28,7 +28,10 @@ size = Vector2(16.0997, 16.6642)
 script = ExtResource("1_hg2kr")
 
 [node name="VisionCone2D" parent="." instance=ExtResource("2_agbh0")]
-position = Vector2(156, 168)
+position = Vector2(-2, 3)
+angle_deg = 90
+debug_lines = true
+debug_shape = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kq1ep")
