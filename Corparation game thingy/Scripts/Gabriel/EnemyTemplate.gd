@@ -15,7 +15,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(delta) -> void:
 	Target_Position = get_global_mouse_position()
 	navigation_agent_2d.target_position = Target_Position
 	Current_Position = self.global_position
