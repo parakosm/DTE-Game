@@ -27,7 +27,8 @@ func _physics_process(delta) -> void:
 	else:
 		_on_navigation_agent_2d_velocity_computed(Velocity)
 	move_and_slide()
-
+	var angle = (Next_Step - self.global_position).angle()
+	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
 func Pathfind():
 	pass #PathFind To Cords Specified by BeeHaveTree
 
