@@ -9,6 +9,7 @@ var Movement_Speed = 50
 var Next_Step
 var Velocity
 @onready var navigation_agent_2d = $NavigationAgent2D
+@onready var path_2d = $"../Ground/Path2D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	Target_Position = get_global_mouse_position()
-	navigation_agent_2d.target_position = Target_Position
+	
 	Current_Position = self.global_position
 	Next_Step = navigation_agent_2d.get_next_path_position()
 	Velocity = Current_Position.direction_to(Next_Step) * Movement_Speed
@@ -29,6 +29,7 @@ func _physics_process(delta) -> void:
 	move_and_slide()
 	var angle = (Next_Step - self.global_position).angle()
 	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
+
 func Pathfind():
 	pass #PathFind To Cords Specified by BeeHaveTree
 
@@ -43,3 +44,9 @@ func Hit():
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
+
+
+func _on_partrol_patrol():
+	path_2d.get_path_
+	#Target_Position = get_global_mouse_position()
+	#navigation_agent_2d.target_position = Target_Position

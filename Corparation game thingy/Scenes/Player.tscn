@@ -4,9 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="2_2on2t"]
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_2qvnv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2on2t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
