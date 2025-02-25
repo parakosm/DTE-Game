@@ -56,7 +56,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@17265")
+blackboard = NodePath("@Node@19737")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
