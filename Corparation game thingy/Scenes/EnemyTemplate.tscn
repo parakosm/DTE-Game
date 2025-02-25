@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=13 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
 [ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
+[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
+[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -54,7 +56,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@34624")
+blackboard = NodePath("@Node@17265")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -69,11 +71,15 @@ script = ExtResource("8_m2nrl")
 [node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
 script = ExtResource("6_2bu6y")
 
-[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorComposite"]
+[node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("4_q6sf1")
 
-[node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
-script = ExtResource("6_2bu6y")
+[node name="PartrolChecker" type="Node" parent="BeehaveTree/SelectorComposite/Patrol"]
+script = ExtResource("9_a12he")
+
+[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite/Patrol"]
+script = ExtResource("10_kn5sd")
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
+[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Patrol/PartrolChecker" method="_on_enemy_template_player_detected"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

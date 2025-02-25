@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var HP = 100
 signal Health_Changed
+signal PlayerDetected
 var Target_Position
 var Current_Position
 var Movement_Speed = 50
@@ -12,7 +13,6 @@ var Velocity
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
@@ -40,7 +40,6 @@ func Face():
 
 func Hit():
 	Health_Changed.emit(HP)
-
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity

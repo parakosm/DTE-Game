@@ -1,5 +1,3 @@
-
-
 @icon("../../icons/condition.svg")
 class_name HealthChecker extends ConditionLeaf
 var HP = null
