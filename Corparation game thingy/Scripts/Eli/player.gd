@@ -4,9 +4,9 @@ extends CharacterBody2D
 
 func get_input():
 	if Input.is_action_pressed("shift"):
-		var speed = 69  
+		speed = 70
 	else:
-		var speed = 42
+		speed = 42
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
