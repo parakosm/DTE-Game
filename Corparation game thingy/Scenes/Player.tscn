@@ -144,3 +144,4 @@ sprite_frames = SubResource("SpriteFrames_rkte2")
 frame_progress = 0.706161
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
