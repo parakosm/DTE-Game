@@ -9,8 +9,9 @@ var Movement_Speed = 50
 var Next_Step
 var Velocity
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var path_2d = $"../Ground/Path2D"
+@onready var pathOne = $"../Path2D::Curve2D"
 
+var path_Progress = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
@@ -47,6 +48,5 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 
 func _on_partrol_patrol():
-	path_2d.get_path_
-	#Target_Position = get_global_mouse_position()
-	#navigation_agent_2d.target_position = Target_Position
+	Target_Position = pathOne.get_point_position(path_Progress)
+	navigation_agent_2d.target_position = Target_Position
