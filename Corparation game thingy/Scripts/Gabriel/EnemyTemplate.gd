@@ -1,5 +1,6 @@
 extends CharacterBody2D
-
+@export_group("Patrol")
+@export var Path_Length = 3
 var HP = 100
 signal Health_Changed
 signal PlayerDetected
@@ -8,13 +9,15 @@ var Current_Position
 var Movement_Speed = 50
 var Next_Step
 var Velocity
+
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var pathOne = $"../Path2D::Curve2D"
+@onready var pathOne = $"../Path2D".curve
 
 var path_Progress = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
+	_on_partrol_patrol()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
@@ -50,3 +53,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 func _on_partrol_patrol():
 	Target_Position = pathOne.get_point_position(path_Progress)
 	navigation_agent_2d.target_position = Target_Position
+	path_Progress += 1
+	if Path_Length == path_Progress:
+		path_Progress = 0

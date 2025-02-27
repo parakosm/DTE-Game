@@ -8,12 +8,19 @@ var Partroling = false
 ## action is completed.
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if Partroling == false:
-		Patrol.emit()
+	if Partroling == true:
 		return RUNNING
-	return RUNNING
+	else:
+		Patrol.emit()
+		print("WHY THE FRICK ARE YOU SPAMMING THIS")
+		Partroling = true
+		return RUNNING
 
 
 func _on_navigation_agent_2d_target_reached():
+	Partroling = false
+	print("stop")
 	return SUCCESS
+	
+	
 	
