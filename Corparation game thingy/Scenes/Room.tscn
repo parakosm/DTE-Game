@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://yeqfsb85xq8y"]
+
+[ext_resource type="Script" path="res://Scripts/Eli/room.gd" id="1_h13n3"]
+
+[node name="Room" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("1_h13n3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
