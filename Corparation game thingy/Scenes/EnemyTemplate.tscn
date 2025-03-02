@@ -58,7 +58,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@17265")
+blackboard = NodePath("@Node@56269")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -84,6 +84,8 @@ script = ExtResource("10_kn5sd")
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Patrol/PartrolChecker" method="_on_enemy_template_player_detected"]
+[connection signal="VisionEnterd" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_enterd"]
+[connection signal="VisionExited" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_exited"]
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Patrol/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Patrol/Partrol" to="." method="_on_partrol_patrol"]

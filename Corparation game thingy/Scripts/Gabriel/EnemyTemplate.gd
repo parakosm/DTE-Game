@@ -3,13 +3,13 @@ extends CharacterBody2D
 @export var Path_Length = 3
 var HP = 100
 signal Health_Changed
-signal PlayerDetected
+signal PlayerDetected(True_False)
 var Target_Position
 var Current_Position
 var Movement_Speed = 50
 var Next_Step
 var Velocity
-
+var True_False
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var pathOne = $"../Path2D".curve
 
@@ -56,3 +56,13 @@ func _on_partrol_patrol():
 	path_Progress += 1
 	if Path_Length == path_Progress:
 		path_Progress = 0
+
+
+func _on_vision_cone_2d_vision_enterd():
+	True_False = true
+	PlayerDetected.emit(True_False)
+
+
+func _on_vision_cone_2d_vision_exited(body):
+	True_False = false
+	PlayerDetected.emit(True_False)
