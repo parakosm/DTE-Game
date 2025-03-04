@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=13 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="5_fsec5"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
 [ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
+[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
+[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -30,7 +31,8 @@ motion_mode = 1
 script = ExtResource("1_hg2kr")
 
 [node name="VisionCone2D" parent="." instance=ExtResource("2_agbh0")]
-position = Vector2(-2, 3)
+position = Vector2(9.53674e-07, 2.38419e-07)
+rotation = -1.5708
 angle_deg = 60
 ray_count = 25
 max_distance = 150.0
@@ -48,13 +50,15 @@ shape = SubResource("CircleShape2D_yr4x4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
+radius = 20.0
 debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@17265")
+blackboard = NodePath("@Node@56269")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -69,14 +73,19 @@ script = ExtResource("8_m2nrl")
 [node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
 script = ExtResource("6_2bu6y")
 
-[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorComposite"]
+[node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("4_q6sf1")
 
-[node name="ConditionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
-script = ExtResource("5_fsec5")
+[node name="PartrolChecker" type="Node" parent="BeehaveTree/SelectorComposite/Patrol"]
+script = ExtResource("9_a12he")
 
-[node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/SequenceComposite2"]
-script = ExtResource("6_2bu6y")
+[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite/Patrol"]
+script = ExtResource("10_kn5sd")
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
+[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Patrol/PartrolChecker" method="_on_enemy_template_player_detected"]
+[connection signal="VisionEnterd" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_enterd"]
+[connection signal="VisionExited" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_exited"]
+[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Patrol/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="Patrol" from="BeehaveTree/SelectorComposite/Patrol/Partrol" to="." method="_on_partrol_patrol"]

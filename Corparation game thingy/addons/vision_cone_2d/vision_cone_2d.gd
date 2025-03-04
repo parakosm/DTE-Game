@@ -2,7 +2,8 @@ extends Node2D
 
 ## A configurable vision cone for 2D entities. It can be used for example to simulate the vision of enemies in a stealth game.
 class_name VisionCone2D
-
+signal VisionEnterd(body)
+signal VisionExited(body)
 @export_group("Raycast parameters")
 ## How wide the vision cone is in degrees
 @export_range(0, 360) var angle_deg = 360
@@ -118,3 +119,11 @@ func _ray_to(direction: Vector2) -> Vector2:
 
 	var ray_position = collision["position"] if "position" in collision else destination
 	return to_local(ray_position)
+
+
+func _on_vision_cone_area_body_entered(body):
+	VisionEnterd.emit()
+
+
+func _on_vision_cone_area_body_exited(body):
+	VisionExited.emit(body)
