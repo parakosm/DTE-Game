@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export_group("Patrol")
-@onready var Path_Length = $"../Path2D".curve.get_point_count()
+@export var pathName: Path2D
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
@@ -11,7 +11,8 @@ var Next_Step
 var Velocity
 var True_False
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var pathOne = $"../Path2D".curve
+@onready var pathOne = pathName.curve
+@onready var Path_Length = pathOne.get_point_count()
 
 var path_Progress = 0
 # Called when the node enters the scene tree for the first time.
