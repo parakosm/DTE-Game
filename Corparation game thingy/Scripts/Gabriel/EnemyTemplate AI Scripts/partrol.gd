@@ -1,5 +1,5 @@
 @icon("../../icons/action.svg")
-class_name Partrol extends Leaf
+class_name Partrol extends ActionLeaf
 signal Patrol
 var Partroling = false
 ## Actions are leaf nodes that define a task to be performed by an actor.
@@ -12,15 +12,10 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		return SUCCESS
 	else:
 		Patrol.emit()
-		print("WHY THE FRICK ARE YOU SPAMMING THIS")
 		Partroling = true
 		return SUCCESS
 
 
 func _on_navigation_agent_2d_target_reached():
 	Partroling = false
-	print("stop")
 	return SUCCESS
-	
-	
-	

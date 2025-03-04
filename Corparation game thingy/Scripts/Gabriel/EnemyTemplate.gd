@@ -1,6 +1,7 @@
 extends CharacterBody2D
-@export_group("Patrol")
+@export_group("settings")
 @export var pathName: Path2D
+@export var Follow_Target: CharacterBody2D
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
@@ -67,3 +68,9 @@ func _on_vision_cone_2d_vision_enterd():
 func _on_vision_cone_2d_vision_exited(body):
 	True_False = false
 	PlayerDetected.emit(True_False)
+
+
+func _on_follow_follow():
+	if Target_Position != Follow_Target.position:
+		Target_Position = Follow_Target.position
+		navigation_agent_2d.target_position = Target_Position
