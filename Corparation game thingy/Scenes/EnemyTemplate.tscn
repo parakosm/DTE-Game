@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://b5ruclose7cbe"]
 
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
+[ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
+[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
+[ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
+[ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
+[ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
+[ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
+[ext_resource type="Script" uid="uid://7s65pw3y70e1" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
+[ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -26,7 +26,6 @@ animations = [{
 radius = 0.880453
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
-scale = Vector2(0.8, 0.8)
 motion_mode = 1
 script = ExtResource("1_hg2kr")
 
@@ -58,7 +57,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@56269")
+blackboard = NodePath("@Node@21789")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

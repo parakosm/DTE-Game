@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export_group("Patrol")
-@export var Path_Length = 3
+@onready var Path_Length = $"../Path2D".curve.get_point_count()
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)

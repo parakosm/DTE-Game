@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=4 uid="uid://cdnxralbyu81x"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_0q2qp"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/NavLayer.gd" id="2_q6rkr"]
+[ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_q6rkr"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="2_qsg40"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_usg1f"]
 
 [sub_resource type="Curve2D" id="Curve2D_3up1g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 79, 56, 0, 0, 0, 0, 288, 302, 0, 0, 0, 0, 421, 74)
+"points": PackedVector2Array(0, 0, 0, 0, 79, 56, 0, 0, 0, 0, 288, 302, 0, 0, 0, 0, 422, 252, 0, 0, 0, 0, 354, 28, 0, 0, 0, 0, 286, 26, 0, 0, 0, 0, 139, 29)
 }
-point_count = 3
+point_count = 6
 
 [node name="Game" type="Node2D"]
 
@@ -30,7 +30,7 @@ tile_set = ExtResource("1_0q2qp")
 position = Vector2(138, 244)
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(6, 2)
 curve = SubResource("Curve2D_3up1g")
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("2_qsg40")]
