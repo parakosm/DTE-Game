@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://b5ruclose7cbe"]
 
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
+[ext_resource type="Script" uid="uid://dml8g7ojocd2p" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
+[ext_resource type="Script" uid="uid://dylpds8bn8exv" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
+[ext_resource type="Script" uid="uid://dkhahfja2sam0" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
+[ext_resource type="Script" uid="uid://cowfgyvmwyg30" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
+[ext_resource type="Script" uid="uid://cgkndxictchr8" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
-[ext_resource type="Script" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
+[ext_resource type="Script" uid="uid://cih2vsft4hfnt" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
+[ext_resource type="Script" uid="uid://da2ydc0rxnolu" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
+[ext_resource type="Script" uid="uid://bhnsre8pj6vsf" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
