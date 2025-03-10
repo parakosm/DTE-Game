@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=6 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
+[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_gntrk"]
 [ext_resource type="Texture2D" uid="uid://25x0c1vfibo8" path="res://Assets/chaicter.png" id="2_kyqiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_man6h"]
@@ -11,6 +12,7 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_2qvnv")
+Bullet = ExtResource("2_gntrk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_man6h")
@@ -26,3 +28,6 @@ position = Vector2(1, 1)
 rotation = 1.5708
 scale = Vector2(0.773328, 0.773328)
 texture = ExtResource("2_kyqiw")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(9, 0)
