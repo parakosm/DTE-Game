@@ -1,5 +1,7 @@
+
+
 @icon("../../icons/condition.svg")
-class_name HealthChecker extends ConditionLeaf
+class_name Idle-Move-Checker extends ConditionLeaf
 var HP = null
 func tick(actor: Node, _blackboard: Blackboard) -> int:
 	
