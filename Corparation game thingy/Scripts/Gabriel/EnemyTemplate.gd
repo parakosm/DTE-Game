@@ -24,7 +24,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
+	Pathfind(delta)
+
 	
+
+
+func Pathfind(delta):
 	Current_Position = self.global_position
 	Next_Step = navigation_agent_2d.get_next_path_position()
 	Velocity = Current_Position.direction_to(Next_Step) * Movement_Speed
@@ -38,9 +43,11 @@ func _physics_process(delta) -> void:
 		angle = (Next_Step - self.global_position).angle()
 	elif lookat == 1:
 		angle = (Follow_Target.position - self.global_position).angle()
+	lookAt(angle, delta)
+
+func lookAt(angle, delta):
 	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
-func Pathfind():
-	pass #PathFind To Cords Specified by BeeHaveTree
+
 
 func Shoot():
 	pass #Shoot Spot Specified by BeeHaveTree
