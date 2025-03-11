@@ -1,6 +1,7 @@
 extends CharacterBody2D
-@export_group("Patrol")
-@export var Path_Length = 3
+@export_group("settings")
+@export var pathName: Path2D
+@export var Follow_Target: CharacterBody2D
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
@@ -11,9 +12,11 @@ var Next_Step
 var Velocity
 var True_False
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var pathOne = $"../Path2D".curve
-
+@onready var pathOne = pathName.curve
+@onready var Path_Length = pathOne.get_point_count()
+var lookat = 0
 var path_Progress = 0
+var angle
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
@@ -31,9 +34,11 @@ func _physics_process(delta) -> void:
 	else:
 		_on_navigation_agent_2d_velocity_computed(Velocity)
 	move_and_slide()
-	var angle = (Next_Step - self.global_position).angle()
+	if lookat == 0:
+		angle = (Next_Step - self.global_position).angle()
+	elif lookat == 1:
+		angle = (Follow_Target.position - self.global_position).angle()
 	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
-
 func Pathfind():
 	pass #PathFind To Cords Specified by BeeHaveTree
 
@@ -56,6 +61,7 @@ func _on_partrol_patrol():
 	path_Progress += 1
 	if Path_Length == path_Progress:
 		path_Progress = 0
+	lookat = 0
 
 
 func _on_vision_cone_2d_vision_enterd():
@@ -66,3 +72,10 @@ func _on_vision_cone_2d_vision_enterd():
 func _on_vision_cone_2d_vision_exited(body):
 	True_False = false
 	PlayerDetected.emit(True_False)
+
+
+func _on_follow_follow():
+	if Target_Position != Follow_Target.position:
+		Target_Position = Follow_Target.position
+		navigation_agent_2d.target_position = Target_Position
+		lookat = 1
