@@ -8,6 +8,7 @@ var Partroling = false
 ## action is completed.
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
+	print(Partroling)
 	if Partroling == true:
 		return SUCCESS
 	else:

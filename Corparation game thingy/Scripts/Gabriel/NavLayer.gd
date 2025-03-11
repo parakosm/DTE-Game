@@ -1,6 +1,6 @@
 extends TileMapLayer
 @onready var walls = $"../Walls"
-@onready var objects = $"../Objects"
+@onready var objects = $"../objects"
 
 
 func _use_tile_data_runtime_update(coords):

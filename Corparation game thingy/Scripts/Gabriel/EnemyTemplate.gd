@@ -65,6 +65,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 func _on_partrol_patrol():
 	Target_Position = pathOne.get_point_position(path_Progress)
 	navigation_agent_2d.target_position = Target_Position
+	print(Target_Position)
 	path_Progress += 1
 	if Path_Length == path_Progress:
 		path_Progress = 0
