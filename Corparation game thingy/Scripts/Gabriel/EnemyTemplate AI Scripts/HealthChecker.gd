@@ -1,4 +1,4 @@
-@icon("../../icons/condition.svg")
+@icon("../../../../addons/beehave/icons/condition.svg")
 class_name HealthChecker extends ConditionLeaf
 var HP = null
 func tick(actor: Node, _blackboard: Blackboard) -> int:
