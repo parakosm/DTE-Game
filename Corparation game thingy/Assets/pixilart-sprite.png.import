@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cadfamswx7a4b"
-valid=false
+uid="uid://b6bbka5q0ytgk"
+path="res://.godot/imported/pixilart-sprite.png-ee4d441fadca466f4249d79d65217cac.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Updated-Tileset-Floor+Walls.png"
+source_file="res://Assets/pixilart-sprite.png"
+dest_files=["res://.godot/imported/pixilart-sprite.png-ee4d441fadca466f4249d79d65217cac.ctex"]
 
 [params]
 

@@ -1,6 +1,4 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bwis1ia1df3j8"]
-
-[ext_resource type="Texture2D" uid="uid://cadfamswx7a4b" path="res://Assets/Updated-Tileset-Floor+Walls.png" id="1_gpnfg"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://bwis1ia1df3j8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v0hrd"]
 vertices = PackedVector2Array(8, 8, -0.5, 8, -0.375, -0.25, 8, -0.375)
@@ -57,7 +55,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, 0.375, -8, -8, 0.5,
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tvl6q"]
-texture = ExtResource("1_gpnfg")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -6.875, 8, -5.03814, -5.03814, -5.03814, -4.94975, 8, -6.89429, 8, -6.8059, -6.8059)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_v0hrd")
