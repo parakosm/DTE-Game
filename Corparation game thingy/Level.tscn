@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvf7d82c2svhj"]
+
+[sub_resource type="Resource" id="Resource_qhyq2"]
+metadata/__load_path__ = "res://Scripts/Eli/rooms.gd"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Rooms" type="Node" parent="."]
+script = SubResource("Resource_qhyq2")
