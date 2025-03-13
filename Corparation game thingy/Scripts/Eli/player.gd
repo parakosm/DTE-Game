@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var Bullet : PackedScene
+
 @export var speed = 42 # Nobody change this variable
 
 func get_input():
@@ -9,8 +11,15 @@ func get_input():
 		speed = 42
 	var input_direction = Input.get_vector("left", "right", "up", "down") #Ensures the player's movement is in the direction that the player chose.
 	velocity = input_direction * speed
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _physics_process(delta):
 	get_input() 
 	move_and_slide()
 	look_at(get_global_mouse_position()) # Sets player facing, determineds by the mouse position function.
+
+func shoot():
+	var b = Bullet.instantiate()
+	owner.add_child(b)
+	b.transform = $Marker2D.global_transform
