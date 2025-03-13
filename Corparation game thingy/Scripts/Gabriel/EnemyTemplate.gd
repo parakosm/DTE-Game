@@ -5,6 +5,7 @@ extends CharacterBody2D
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
+signal LookAroundFinished
 var Target_Position
 var Current_Position
 var Movement_Speed = 25
@@ -17,6 +18,10 @@ var True_False
 var lookat = 0
 var path_Progress = 0
 var angle
+@onready var look_point_two = $LookPointTwo
+@onready var look_point_one = $LookPointOne
+var Delta
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
@@ -24,7 +29,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	Pathfind(delta)
+	Delta = delta
 
 
 func Pathfind(delta):
@@ -89,3 +94,20 @@ func _on_follow_follow():
 		navigation_agent_2d.target_position = Target_Position
 		lookat = 1
 		Movement_Speed = 40
+
+
+func _on_look_around_look_around():
+	print("started")
+	$PathFind.stop()
+	angle = (look_point_one.position - self.global_position).angle()
+	lookAt(angle, Delta)
+	angle = (look_point_two.position - self.global_position).angle()
+	lookAt(angle, Delta)
+	LookAroundFinished.emit()
+	print("PLEASEFUCKINGSTOP")
+	$PathFind.start()
+	print("done?")
+
+
+func _on_path_find_timeout():
+	Pathfind(Delta)
