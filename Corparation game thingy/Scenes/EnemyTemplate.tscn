@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=15 format=3 uid="uid://dsl00aftrb6fl"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
@@ -57,7 +57,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@22814")
+blackboard = NodePath("@Node@32360")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

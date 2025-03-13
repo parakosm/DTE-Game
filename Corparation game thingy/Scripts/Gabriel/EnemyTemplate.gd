@@ -26,7 +26,6 @@ func _ready():
 func _physics_process(delta) -> void:
 	Pathfind(delta)
 
-
 func Pathfind(delta):
 	Current_Position = self.global_position
 	Next_Step = navigation_agent_2d.get_next_path_position()
@@ -54,7 +53,11 @@ func Face():
 	pass #Face Derection spesifide by Other Functions AND Swivile as spesifide by BeeHaveTree
 
 func Hit():
-	Health_Changed.emit(HP)
+	HP -= 25 # Reduces enemy HP
+	print(HP) # Here for testing
+	Health_Changed.emit(HP) # Gabriel wants this here for Beehave iirc
+	if HP <= 0:
+		queue_free() # If HP is brought to or below zero as the result of a hit then destroy the enemy
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity

@@ -44,6 +44,6 @@ texture = ExtResource("1_jwtt5")
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.99067, 5.01024, -8, 5.01024, -8, 7.04565, -6.98693, 7.0065, -6.98693, 8, -5.02739, 8)
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_tvl6q")
