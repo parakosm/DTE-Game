@@ -1,18 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=15 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
-[ext_resource type="Script" uid="uid://bmw44kjtrdifa" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
-[ext_resource type="Script" uid="uid://cvde7u4stu0rw" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
-[ext_resource type="Script" uid="uid://cb6sujp3ak4qo" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
-[ext_resource type="Script" uid="uid://db7anximriqkh" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
+[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
+[ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
+[ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
+[ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
 [ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
 [ext_resource type="Script" uid="uid://7s65pw3y70e1" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol_checker.gd" id="9_a12he"]
 [ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 [ext_resource type="Script" uid="uid://dfl26wawo8us5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow_checker.gd" id="11_1f1ok"]
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
-[ext_resource type="Script" uid="uid://fjc4tw13tsod" path="res://addons/beehave/nodes/leaves/condition.gd" id="13_7vx65"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -27,173 +26,6 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
 radius = 0.880453
-
-[sub_resource type="GDScript" id="GDScript_saush"]
-script/source = "@tool
-@icon(\"../../icons/selector.svg\")
-class_name SelectorComposite extends Composite
-
-## Selector nodes will attempt to execute each of its children until one of
-## them return `SUCCESS`. If all children return `FAILURE`, this node will also
-## return `FAILURE`.
-## If a child returns `RUNNING` it will tick again.
-
-var last_execution_index: int = 0
-
-
-func tick(actor: Node, blackboard: Blackboard) -> int:
-	for c in get_children():
-		if c.get_index() < last_execution_index:
-			continue
-
-		if c != running_child:
-			c.before_run(actor, blackboard)
-
-		var response = c.tick(actor, blackboard)
-		if can_send_message(blackboard):
-			BeehaveDebuggerMessages.process_tick(c.get_instance_id(), response)
-
-		if c is ConditionLeaf:
-			blackboard.set_value(\"last_condition\", c, str(actor.get_instance_id()))
-			blackboard.set_value(\"last_condition_status\", response, str(actor.get_instance_id()))
-
-		match response:
-			SUCCESS:
-				_cleanup_running_task(c, actor, blackboard)
-				c.after_run(actor, blackboard)
-				return SUCCESS
-			FAILURE:
-				_cleanup_running_task(c, actor, blackboard)
-				last_execution_index += 1
-				c.after_run(actor, blackboard)
-			RUNNING:
-				running_child = c
-				if c is ActionLeaf:
-					blackboard.set_value(\"running_action\", c, str(actor.get_instance_id()))
-				return RUNNING
-
-	return FAILURE
-
-
-func after_run(actor: Node, blackboard: Blackboard) -> void:
-	last_execution_index = 0
-	super(actor, blackboard)
-
-
-func interrupt(actor: Node, blackboard: Blackboard) -> void:
-	last_execution_index = 0
-	super(actor, blackboard)
-
-
-## Changes `running_action` and `running_child` after the node finishes executing.
-func _cleanup_running_task(finished_action: Node, actor: Node, blackboard: Blackboard):
-	var blackboard_name = str(actor.get_instance_id())
-	if finished_action == running_child:
-		running_child = null
-		if finished_action == blackboard.get_value(\"running_action\", null, blackboard_name):
-			blackboard.set_value(\"running_action\", null, blackboard_name)
-
-
-func get_class_name() -> Array[StringName]:
-	var classes := super()
-	classes.push_back(&\"SelectorComposite\")
-	return classes
-"
-
-[sub_resource type="GDScript" id="GDScript_1f1ok"]
-script/source = "@tool
-@icon(\"../../icons/sequence.svg\")
-class_name SequenceComposite extends Composite
-
-## Sequence nodes will attempt to execute all of its children and report
-## `SUCCESS` in case all of the children report a `SUCCESS` status code.
-## If at least one child reports a `FAILURE` status code, this node will also
-## return `FAILURE` and restart.
-## In case a child returns `RUNNING` this node will tick again.
-
-var successful_index: int = 0
-
-
-func tick(actor: Node, blackboard: Blackboard) -> int:
-	for c in get_children():
-
-		if c.get_index() < successful_index:
-			continue
-
-		if c != running_child:
-			c.before_run(actor, blackboard)
-
-		var response = c.tick(actor, blackboard)
-		if can_send_message(blackboard):
-			BeehaveDebuggerMessages.process_tick(c.get_instance_id(), response)
-
-		if c is ConditionLeaf:
-			blackboard.set_value(\"last_condition\", c, str(actor.get_instance_id()))
-			blackboard.set_value(\"last_condition_status\", response, str(actor.get_instance_id()))
-
-		match response:
-			SUCCESS:
-				_cleanup_running_task(c, actor, blackboard)
-				successful_index += 1
-				c.after_run(actor, blackboard)
-			FAILURE:
-				_cleanup_running_task(c, actor, blackboard)
-				# Interrupt any child that was RUNNING before.
-				interrupt(actor, blackboard)
-				c.after_run(actor, blackboard)
-				return FAILURE
-			RUNNING:
-				if c != running_child:
-					if running_child != null:
-						running_child.interrupt(actor, blackboard)
-					running_child = c
-				if c is ActionLeaf:
-					blackboard.set_value(\"running_action\", c, str(actor.get_instance_id()))
-				return RUNNING
-
-	_reset()
-	return SUCCESS
-
-
-func interrupt(actor: Node, blackboard: Blackboard) -> void:
-	_reset()
-	super(actor, blackboard)
-
-
-func _reset() -> void:
-	successful_index = 0
-
-
-## Changes `running_action` and `running_child` after the node finishes executing.
-func _cleanup_running_task(finished_action: Node, actor: Node, blackboard: Blackboard):
-	var blackboard_name = str(actor.get_instance_id())
-	if finished_action == running_child:
-		running_child = null
-		if finished_action == blackboard.get_value(\"running_action\", null, blackboard_name):
-			blackboard.set_value(\"running_action\", null, blackboard_name)
-
-
-func get_class_name() -> Array[StringName]:
-	var classes := super()
-	classes.push_back(&\"SequenceComposite\")
-	return classes
-"
-
-[sub_resource type="GDScript" id="GDScript_7vx65"]
-script/source = "@tool
-@icon(\"../../../addons/beehave/icons/action.svg\")
-class_name LookAround extends ActionLeaf
-
-## Actions are leaf nodes that define a task to be performed by an actor.
-## Their execution can be long running, potentially being called across multiple
-## frame executions. In this case, the node should return `RUNNING` until the
-## action is completed.
-
-func get_class_name() -> Array[StringName]:
-	var classes := super()
-	classes.push_back(&\"ActionLeaf\")
-	return classes
-"
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
 motion_mode = 1
@@ -223,22 +55,25 @@ avoidance_enabled = true
 radius = 20.0
 debug_enabled = true
 
-[node name="BeehaveTree" type="Node" parent="."]
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_tc6eq")
+blackboard = NodePath("@Node@27194")
+actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
-script = SubResource("GDScript_saush")
+script = ExtResource("3_xo6hj")
 
 [node name="Health" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = SubResource("GDScript_1f1ok")
+script = ExtResource("4_q6sf1")
 
 [node name="HealthChecker" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
 script = ExtResource("8_m2nrl")
 
 [node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
-script = SubResource("GDScript_7vx65")
+script = ExtResource("6_2bu6y")
 
 [node name="Patrol" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = SubResource("GDScript_1f1ok")
+script = ExtResource("4_q6sf1")
 
 [node name="PartrolChecker" type="Node" parent="BeehaveTree/SelectorComposite/Patrol"]
 script = ExtResource("9_a12he")
@@ -247,71 +82,13 @@ script = ExtResource("9_a12he")
 script = ExtResource("10_kn5sd")
 
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = SubResource("GDScript_1f1ok")
+script = ExtResource("4_q6sf1")
 
 [node name="FollowChecker" type="Node" parent="BeehaveTree/SelectorComposite/Follow"]
 script = ExtResource("11_1f1ok")
 
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/Follow"]
 script = ExtResource("11_saush")
-
-[node name="BeehaveTree2" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@24477")
-actor = NodePath("../BeehaveTree")
-metadata/_custom_type_script = "uid://bmw44kjtrdifa"
-
-[node name="SelectorComposite" type="Node" parent="BeehaveTree2"]
-script = ExtResource("3_xo6hj")
-metadata/_custom_type_script = "uid://cvde7u4stu0rw"
-
-[node name="Health" type="Node" parent="BeehaveTree2/SelectorComposite"]
-script = ExtResource("4_q6sf1")
-metadata/_custom_type_script = "uid://cb6sujp3ak4qo"
-
-[node name="HealthChecker" type="Node" parent="BeehaveTree2/SelectorComposite/Health"]
-script = ExtResource("8_m2nrl")
-metadata/_custom_type_script = "uid://fjc4tw13tsod"
-
-[node name="Health" type="Node" parent="BeehaveTree2/SelectorComposite/Health"]
-script = ExtResource("6_2bu6y")
-metadata/_custom_type_script = "uid://db7anximriqkh"
-
-[node name="Patroal" type="Node" parent="BeehaveTree2/SelectorComposite"]
-script = ExtResource("4_q6sf1")
-metadata/_custom_type_script = "uid://cb6sujp3ak4qo"
-
-[node name="PartrolChecker" type="Node" parent="BeehaveTree2/SelectorComposite/Patroal"]
-script = ExtResource("13_7vx65")
-metadata/_custom_type_script = "uid://fjc4tw13tsod"
-
-[node name="Partrol" type="Node" parent="BeehaveTree2/SelectorComposite/Patroal"]
-script = ExtResource("6_2bu6y")
-metadata/_custom_type_script = "uid://db7anximriqkh"
-
-[node name="Follow" type="Node" parent="BeehaveTree2/SelectorComposite"]
-script = ExtResource("4_q6sf1")
-metadata/_custom_type_script = "uid://cb6sujp3ak4qo"
-
-[node name="FollowChecker" type="Node" parent="BeehaveTree2/SelectorComposite/Follow"]
-script = ExtResource("13_7vx65")
-metadata/_custom_type_script = "uid://fjc4tw13tsod"
-
-[node name="Follow" type="Node" parent="BeehaveTree2/SelectorComposite/Follow"]
-script = ExtResource("6_2bu6y")
-metadata/_custom_type_script = "uid://db7anximriqkh"
-
-[node name="LookAt" type="Node" parent="BeehaveTree2/SelectorComposite"]
-script = ExtResource("4_q6sf1")
-metadata/_custom_type_script = "uid://cb6sujp3ak4qo"
-
-[node name="LookAtChecker" type="Node" parent="BeehaveTree2/SelectorComposite/LookAt"]
-script = ExtResource("13_7vx65")
-metadata/_custom_type_script = "uid://fjc4tw13tsod"
-
-[node name="LookAt" type="Node" parent="BeehaveTree2/SelectorComposite/LookAt"]
-script = ExtResource("6_2bu6y")
-metadata/_custom_type_script = "uid://db7anximriqkh"
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Patrol/PartrolChecker" method="_on_enemy_template_player_detected"]
@@ -320,3 +97,5 @@ metadata/_custom_type_script = "uid://db7anximriqkh"
 [connection signal="VisionExited" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_exited"]
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Patrol/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="Patrol" from="BeehaveTree/SelectorComposite/Patrol/Partrol" to="." method="_on_partrol_patrol"]
+[connection signal="follow" from="BeehaveTree/SelectorComposite/Follow/Follow" to="." method="_on_follow_follow"]

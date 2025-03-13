@@ -26,6 +26,8 @@ func _ready():
 func _physics_process(delta) -> void:
 	Pathfind(delta)
 
+	
+
 
 func Pathfind(delta):
 	Current_Position = self.global_position
@@ -45,6 +47,7 @@ func Pathfind(delta):
 
 func lookAt(angle, delta):
 	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
+
 
 func Shoot():
 	pass #Shoot Spot Specified by BeeHaveTree
