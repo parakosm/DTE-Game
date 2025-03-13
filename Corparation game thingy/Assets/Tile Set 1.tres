@@ -1,6 +1,12 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bwis1ia1df3j8"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://bwis1ia1df3j8"]
 
 [ext_resource type="Texture2D" uid="uid://bms0qn4xnfcrh" path="res://Assets/Wall+Ground.png" id="1_jwtt5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jwtt5"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tvl6q"]
 texture = ExtResource("1_jwtt5")
@@ -13,6 +19,7 @@ texture = ExtResource("1_jwtt5")
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.89966, -8, -4.94611, -8, -4.94611, 8, -6.969, 8)
 1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jwtt5")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.9545, 8, 5.12704, 8, 5.02551, -8, 7.05602, -8)
 0:2/0 = 0

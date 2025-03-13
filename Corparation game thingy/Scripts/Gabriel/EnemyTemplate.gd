@@ -7,7 +7,7 @@ signal Health_Changed
 signal PlayerDetected(True_False)
 var Target_Position
 var Current_Position
-var Movement_Speed = 50
+var Movement_Speed = 25
 var Next_Step
 var Velocity
 var True_False
@@ -25,8 +25,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	Pathfind(delta)
-
-	
 
 
 func Pathfind(delta):
@@ -70,14 +68,17 @@ func _on_partrol_patrol():
 	if Path_Length == path_Progress:
 		path_Progress = 0
 	lookat = 0
+	Movement_Speed = 25
 
 
 func _on_vision_cone_2d_vision_enterd():
 	True_False = true
 	PlayerDetected.emit(True_False)
-
+	lookat = 1
+	
 
 func _on_vision_cone_2d_vision_exited(body):
+	lookat = 0
 	True_False = false
 	PlayerDetected.emit(True_False)
 
@@ -87,3 +88,4 @@ func _on_follow_follow():
 		Target_Position = Follow_Target.position
 		navigation_agent_2d.target_position = Target_Position
 		lookat = 1
+		Movement_Speed = 40
