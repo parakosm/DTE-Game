@@ -1,8 +1,8 @@
 @icon("../../icons/condition.svg")
 class_name HealthChecker extends ConditionLeaf
-var HP = null
+var HP = 100
+
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	
 	if HP <= 0:
 		return SUCCESS
 	else:

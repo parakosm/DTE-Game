@@ -109,9 +109,9 @@ sources/0 = SubResource("TileSetAtlasSource_f66m2")
 
 [sub_resource type="Curve2D" id="Curve2D_auim0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 130, 167, 0, 0, 0, 0, 131, 201, 0, 0, 0, 0, 240, 204, 0, 0, 0, 0, 240, 168, 0, 0, 0, 0, 130, 167)
+"points": PackedVector2Array(0, 0, 0, 0, 131, 201, 0, 0, 0, 0, 240, 204, 0, 0, 0, 0, 240, 168, 0, 0, 0, 0, 130, 167)
 }
-point_count = 5
+point_count = 4
 
 [node name="Node2D" type="Node2D"]
 
@@ -129,7 +129,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAA
 tile_set = ExtResource("1_jer6a")
 
 [node name="Player" parent="." instance=ExtResource("3_f66m2")]
-position = Vector2(86, 49)
+position = Vector2(227, 185)
 
 [node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("5_f66m2")]
 position = Vector2(166, 179)

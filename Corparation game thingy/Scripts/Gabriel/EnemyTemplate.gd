@@ -19,7 +19,6 @@ var path_Progress = 0
 var angle
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Hit()
 	_on_partrol_patrol()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,7 +52,7 @@ func Face():
 	pass #Face Derection spesifide by Other Functions AND Swivile as spesifide by BeeHaveTree
 
 func Hit():
-	HP -= 25 # Reduces enemy HP
+	HP -= 10 # Reduces enemy HP
 	print(HP) # Here for testing
 	Health_Changed.emit(HP) # Gabriel wants this here for Beehave iirc
 	if HP <= 0:
