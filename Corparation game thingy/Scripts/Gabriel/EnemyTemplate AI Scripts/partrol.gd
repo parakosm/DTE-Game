@@ -9,7 +9,6 @@ var stop = false
 ## action is completed.
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	print(Partroling)
 	if stop == true:
 		return FAILURE
 	elif Partroling == true:

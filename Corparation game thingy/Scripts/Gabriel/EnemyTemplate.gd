@@ -21,7 +21,7 @@ var angle
 @onready var look_point_two = $LookPointTwo
 @onready var look_point_one = $LookPointOne
 var Delta
-
+var DelayLooking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
@@ -97,17 +97,22 @@ func _on_follow_follow():
 
 
 func _on_look_around_look_around():
-	print("started")
 	$PathFind.stop()
-	angle = (look_point_one.position - self.global_position).angle()
+	angle = (look_point_one.global_position - self.global_position).angle()
+	print(angle)
 	lookAt(angle, Delta)
-	angle = (look_point_two.position - self.global_position).angle()
-	lookAt(angle, Delta)
-	LookAroundFinished.emit()
-	print("PLEASEFUCKINGSTOP")
-	$PathFind.start()
-	print("done?")
+	$LookingAroundDelay.start()
+
 
 
 func _on_path_find_timeout():
 	Pathfind(Delta)
+
+
+func _on_looking_around_delay_timeout():
+	angle = (look_point_two.global_position - self.global_position).angle()
+	print(angle)
+	lookAt(angle, Delta)
+	await get_tree().create_timer(2).timeout
+	LookAroundFinished.emit()
+	$PathFind.start()

@@ -30,6 +30,17 @@ radius = 0.880453
 motion_mode = 1
 script = ExtResource("1_hg2kr")
 
+[node name="LookPointTwo" type="Marker2D" parent="."]
+position = Vector2(24, 16)
+
+[node name="LookPointOne" type="Marker2D" parent="."]
+position = Vector2(24, -16)
+
+[node name="PathFind" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.001
+autostart = true
+
 [node name="VisionCone2D" parent="." instance=ExtResource("2_agbh0")]
 position = Vector2(9.53674e-07, 2.38419e-07)
 rotation = -1.5708
@@ -56,7 +67,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21780")
+blackboard = NodePath("@Node@21805")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -85,21 +96,13 @@ metadata/_custom_type_script = "uid://cw7ht1cb74su5"
 [node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("10_kn5sd")
 
-[node name="LookPointTwo" type="Marker2D" parent="."]
-position = Vector2(24, 16)
-
-[node name="LookPointOne" type="Marker2D" parent="."]
-position = Vector2(24, -16)
-
-[node name="PathFind" type="Timer" parent="."]
-process_callback = 0
-wait_time = 0.001
-autostart = true
+[node name="LookingAroundDelay" type="Timer" parent="."]
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="LookAroundFinished" from="." to="BeehaveTree/SelectorComposite/Follow/LookAround" method="_on_enemy_template_look_around_finished"]
-[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Partrol" method="_on_enemy_template_player_detected"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Follow/Follow" method="_on_enemy_template_player_detected"]
+[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Partrol" method="_on_enemy_template_player_detected"]
+[connection signal="timeout" from="PathFind" to="." method="_on_path_find_timeout"]
 [connection signal="VisionEnterd" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_exited"]
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
@@ -107,4 +110,4 @@ autostart = true
 [connection signal="follow" from="BeehaveTree/SelectorComposite/Follow/Follow" to="." method="_on_follow_follow"]
 [connection signal="lookAround" from="BeehaveTree/SelectorComposite/Follow/LookAround" to="." method="_on_look_around_look_around"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
-[connection signal="timeout" from="PathFind" to="." method="_on_path_find_timeout"]
+[connection signal="timeout" from="LookingAroundDelay" to="." method="_on_looking_around_delay_timeout"]
