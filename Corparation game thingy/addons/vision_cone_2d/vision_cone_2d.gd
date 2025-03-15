@@ -122,7 +122,7 @@ func _ray_to(direction: Vector2) -> Vector2:
 
 
 func _on_vision_cone_area_body_entered(body):
-	VisionEnterd.emit()
+	VisionEnterd.emit(body)
 
 
 func _on_vision_cone_area_body_exited(body):

@@ -20,8 +20,10 @@ var path_Progress = 0
 var angle
 @onready var look_point_two = $LookPointTwo
 @onready var look_point_one = $LookPointOne
-var Delta
 var DelayLooking = false
+var LookingOrMoving = "Looking"
+var lookSpeed = 4
+var NavFinished = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
@@ -29,8 +31,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	Delta = delta
-
+	if LookingOrMoving == "Moving":
+		Pathfind(delta)
+		lookSpeed = 4
+		NavFinished= false
+	elif LookingOrMoving == "Looking":
+		lookSpeed = 0.5
+		lookAt(angle, delta)
 
 func Pathfind(delta):
 	Current_Position = self.global_position
@@ -49,7 +56,7 @@ func Pathfind(delta):
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
-	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
+	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * lookSpeed)
 
 
 func Shoot():
@@ -66,9 +73,9 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 
 func _on_partrol_patrol():
+	LookingOrMoving = "Moving"
 	Target_Position = pathOne.get_point_position(path_Progress)
 	navigation_agent_2d.target_position = Target_Position
-	print(Target_Position)
 	path_Progress += 1
 	if Path_Length == path_Progress:
 		path_Progress = 0
@@ -76,16 +83,19 @@ func _on_partrol_patrol():
 	Movement_Speed = 25
 
 
-func _on_vision_cone_2d_vision_enterd():
-	True_False = true
-	PlayerDetected.emit(True_False)
-	lookat = 1
+func _on_vision_cone_2d_vision_enterd(body):
+	if body == Follow_Target:
+		True_False = true
+		PlayerDetected.emit(True_False)
+		
+		LookingOrMoving = "Moving"
 	
 
 func _on_vision_cone_2d_vision_exited(body):
-	lookat = 0
-	True_False = false
-	PlayerDetected.emit(True_False)
+	if body == Follow_Target:
+		lookat = 0
+		True_False = false
+		PlayerDetected.emit(True_False)
 
 
 func _on_follow_follow():
@@ -94,25 +104,30 @@ func _on_follow_follow():
 		navigation_agent_2d.target_position = Target_Position
 		lookat = 1
 		Movement_Speed = 40
+		LookingOrMoving = "Moving"
 
 
 func _on_look_around_look_around():
-	$PathFind.stop()
-	angle = (look_point_one.global_position - self.global_position).angle()
-	print(angle)
-	lookAt(angle, Delta)
-	$LookingAroundDelay.start()
+	LookingOrMoving = "Looking"
+	#while NavFinished == false:
+	#	await get_tree().create_timer(0.1).timeout
+	if NavFinished == true:
+		angle = (look_point_one.global_position - self.global_position).angle()
+		var angle2 = (look_point_two.global_position - self.global_position).angle()
+		await get_tree().create_timer(3).timeout
+		angle = angle2
+		await get_tree().create_timer(3).timeout
+		LookAroundFinished.emit()
+		
 
 
+func _on_navigation_agent_2d_target_reached():
+	NavFinished = true
+	if LookingOrMoving == "Looking":
+		_on_look_around_look_around()
 
-func _on_path_find_timeout():
-	Pathfind(Delta)
 
-
-func _on_looking_around_delay_timeout():
-	angle = (look_point_two.global_position - self.global_position).angle()
-	print(angle)
-	lookAt(angle, Delta)
-	await get_tree().create_timer(2).timeout
-	LookAroundFinished.emit()
-	$PathFind.start()
+func _on_navigation_agent_2d_path_changed():
+	#print(navigation_agent_2d.get_current_navigation_path_index())
+	if navigation_agent_2d.get_current_navigation_path_index() > 8:
+		LookAroundFinished.emit()
