@@ -20,9 +20,6 @@ shape = SubResource("CircleShape2D_man6h")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2768e")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 1)
 rotation = 1.5708
