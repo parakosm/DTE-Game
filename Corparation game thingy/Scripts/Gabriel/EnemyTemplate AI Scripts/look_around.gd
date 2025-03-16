@@ -6,11 +6,12 @@ signal lookAround
 func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if stop == true:
 		stop = false
+		print("stoped")
 		return FAILURE
 		
 	elif Looking == false:
+		print("emited")
 		lookAround.emit()
-
 		Looking = true
 		stop = false
 		return SUCCESS

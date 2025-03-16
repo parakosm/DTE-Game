@@ -87,8 +87,6 @@ func _on_vision_cone_2d_vision_enterd(body):
 	if body == Follow_Target:
 		True_False = true
 		PlayerDetected.emit(True_False)
-		
-		LookingOrMoving = "Moving"
 	
 
 func _on_vision_cone_2d_vision_exited(body):
@@ -109,21 +107,32 @@ func _on_follow_follow():
 
 func _on_look_around_look_around():
 	LookingOrMoving = "Looking"
+	print("start")
+	print(LookingOrMoving, " lookwww")
+	print(NavFinished)
 	#while NavFinished == false:
 	#	await get_tree().create_timer(0.1).timeout
 	if NavFinished == true:
+		print("done3")
 		angle = (look_point_one.global_position - self.global_position).angle()
 		var angle2 = (look_point_two.global_position - self.global_position).angle()
-		await get_tree().create_timer(3).timeout
+		print("done2")
+		await get_tree().create_timer(2).timeout
 		angle = angle2
-		await get_tree().create_timer(3).timeout
+		print("done1")
+		await get_tree().create_timer(2).timeout
 		LookAroundFinished.emit()
+		print("done")
 		
 
 
 func _on_navigation_agent_2d_target_reached():
+	await get_tree().create_timer(0.5).timeout
 	NavFinished = true
+	print(NavFinished, " finished")
+	print(LookingOrMoving, " shuld be true")
 	if LookingOrMoving == "Looking":
+		print("called look")
 		_on_look_around_look_around()
 
 

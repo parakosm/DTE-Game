@@ -18,7 +18,6 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		Partroling = true
 		return RUNNING
 
-
 func _on_navigation_agent_2d_target_reached():
 	Partroling = false
 	return SUCCESS
