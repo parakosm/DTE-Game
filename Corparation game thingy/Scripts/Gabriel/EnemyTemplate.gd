@@ -123,6 +123,9 @@ func _on_look_around_look_around():
 		await get_tree().create_timer(2).timeout
 		LookAroundFinished.emit()
 		print("done")
+	else:
+		LookAroundFinished.emit()
+		print("failed")
 		
 
 

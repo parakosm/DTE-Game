@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=19 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
 [ext_resource type="Script" uid="uid://r3jn0iw7x32u" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/look_around.gd" id="12_1f1ok"]
 [ext_resource type="Script" uid="uid://batqah7oq5e1f" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="12_7vx65"]
+[ext_resource type="Script" uid="uid://ckchmw4e8vi3q" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="13_a7gxt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -67,7 +68,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21780")
+blackboard = NodePath("@Node@21802")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -102,7 +103,12 @@ metadata/_custom_type_script = "uid://d15gdyd0wt2bp"
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator"]
 script = ExtResource("11_saush")
 
-[node name="LookAround" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite"]
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite"]
+script = ExtResource("13_a7gxt")
+wait_time = 5.0
+metadata/_custom_type_script = "uid://ckchmw4e8vi3q"
+
+[node name="LookAround" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/TimeLimiterDecorator"]
 script = ExtResource("12_1f1ok")
 metadata/_custom_type_script = "uid://cw7ht1cb74su5"
 
@@ -118,7 +124,8 @@ metadata/_custom_type_script = "uid://cw7ht1cb74su5"
 script = ExtResource("10_kn5sd")
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
-[connection signal="LookAroundFinished" from="." to="BeehaveTree/SelectorComposite/SelectorComposite/LookAround" method="_on_enemy_template_look_around_finished"]
+[connection signal="LookAroundFinished" from="." to="BeehaveTree/SelectorComposite/SelectorComposite/TimeLimiterDecorator/LookAround" method="_on_enemy_template_look_around_finished"]
+[connection signal="LookAroundFinished" from="." to="BeehaveTree/SelectorComposite/SequenceRandomComposite/LookAround" method="_on_enemy_template_look_around_finished"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" method="_on_enemy_template_player_detected"]
 [connection signal="VisionEnterd" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_enterd"]
@@ -130,6 +137,7 @@ script = ExtResource("10_kn5sd")
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
-[connection signal="lookAround" from="BeehaveTree/SelectorComposite/SelectorComposite/LookAround" to="." method="_on_look_around_look_around"]
+[connection signal="lookAround" from="BeehaveTree/SelectorComposite/SelectorComposite/TimeLimiterDecorator/LookAround" to="." method="_on_look_around_look_around"]
 [connection signal="lookAround" from="BeehaveTree/SelectorComposite/SequenceRandomComposite/LookAround" to="." method="_on_look_around_look_around"]
+[connection signal="restartPartoal" from="BeehaveTree/SelectorComposite/SequenceRandomComposite/LookAround" to="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" method="_on_look_around_restart_partoal"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" to="." method="_on_partrol_patrol"]

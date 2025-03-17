@@ -27,3 +27,7 @@ func _on_enemy_template_player_detected(test):
 		stop = true
 	else:
 		stop = false
+
+
+func _on_look_around_restart_partoal():
+	Patrol.emit()
