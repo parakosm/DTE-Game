@@ -16,12 +16,11 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		lookAround.emit()
 		Looking = true
 		stop = false
-		return SUCCESS
-	elif Looking == true:
 		return RUNNING
-		await get_tree().create_timer(4).timeout
+	elif Looking == true:
 		Looking = false
 		stop = true
+		return SUCCESS
 	return SUCCESS
 		
 func _on_enemy_template_look_around_finished():
