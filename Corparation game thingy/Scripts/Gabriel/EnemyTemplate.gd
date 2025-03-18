@@ -126,14 +126,13 @@ func _on_look_around_look_around():
 	else:
 		LookAroundFinished.emit()
 		print("failed")
-		
 
 
 func _on_navigation_agent_2d_target_reached():
 	await get_tree().create_timer(0.5).timeout
 	NavFinished = true
 	print(NavFinished, " finished")
-	print(LookingOrMoving, " shuld be true")
+	print(LookingOrMoving, " shuld be looking")
 	if LookingOrMoving == "Looking":
 		print("called look")
 		_on_look_around_look_around()
