@@ -28,3 +28,6 @@ texture = ExtResource("3_gntrk")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(14, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
