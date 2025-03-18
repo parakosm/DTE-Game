@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=14 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="2_agbh0"]
@@ -8,12 +8,9 @@
 [ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
 [ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
-[ext_resource type="Script" uid="uid://kw5jur2q22cq" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_1f1ok"]
-[ext_resource type="Script" uid="uid://jb1mmo4yqby" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_je0eg"]
 [ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
-[ext_resource type="Script" uid="uid://d15gdyd0wt2bp" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="11_a7gxt"]
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
-[ext_resource type="Script" uid="uid://batqah7oq5e1f" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="12_7vx65"]
+[ext_resource type="Script" uid="uid://r3jn0iw7x32u" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/look_around.gd" id="12_1f1ok"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -58,7 +55,6 @@ scale = Vector2(7.95045, 7.68115)
 shape = SubResource("CircleShape2D_yr4x4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 30.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 20.0
@@ -66,7 +62,7 @@ debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21780")
+blackboard = NodePath("@Node@22814")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -81,43 +77,30 @@ script = ExtResource("8_m2nrl")
 [node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
 script = ExtResource("6_2bu6y")
 
-[node name="SelectorComposite" type="Node" parent="BeehaveTree/SelectorComposite"]
+[node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("3_xo6hj")
 metadata/_custom_type_script = "uid://bi34rfldfcfmc"
 
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite"]
-script = ExtResource("9_1f1ok")
-wait_time = 2.0
-metadata/_custom_type_script = "uid://kw5jur2q22cq"
-
-[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator"]
-script = ExtResource("10_je0eg")
-metadata/_custom_type_script = "uid://jb1mmo4yqby"
-
-[node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator"]
-script = ExtResource("11_a7gxt")
-metadata/_custom_type_script = "uid://d15gdyd0wt2bp"
-
-[node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator"]
+[node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/Follow"]
 script = ExtResource("11_saush")
 
-[node name="SequenceRandomComposite" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("12_7vx65")
-metadata/_custom_type_script = "uid://batqah7oq5e1f"
+[node name="LookAround" type="Node" parent="BeehaveTree/SelectorComposite/Follow"]
+script = ExtResource("12_1f1ok")
+metadata/_custom_type_script = "uid://cw7ht1cb74su5"
 
-[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite/SequenceRandomComposite"]
+[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("10_kn5sd")
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
-[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]
-[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" method="_on_enemy_template_player_detected"]
+[connection signal="LookAroundFinished" from="." to="BeehaveTree/SelectorComposite/Follow/LookAround" method="_on_enemy_template_look_around_finished"]
+[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Follow/Follow" method="_on_enemy_template_player_detected"]
+[connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/Partrol" method="_on_enemy_template_player_detected"]
 [connection signal="VisionEnterd" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D" to="." method="_on_vision_cone_2d_vision_exited"]
-[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
-[connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_path_changed"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
-[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_target_reached"]
-[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Follow/Follow" method="_on_navigation_agent_2d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="follow" from="BeehaveTree/SelectorComposite/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
-[connection signal="Patrol" from="BeehaveTree/SelectorComposite/SequenceRandomComposite/Partrol" to="." method="_on_partrol_patrol"]
+[connection signal="follow" from="BeehaveTree/SelectorComposite/Follow/Follow" to="." method="_on_follow_follow"]
+[connection signal="lookAround" from="BeehaveTree/SelectorComposite/Follow/LookAround" to="." method="_on_look_around_look_around"]
+[connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]

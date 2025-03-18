@@ -5,6 +5,7 @@ extends CharacterBody2D
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
+signal LookAroundFinished
 var Target_Position
 var Current_Position
 var Movement_Speed = 25
@@ -17,13 +18,26 @@ var True_False
 var lookat = 0
 var path_Progress = 0
 var angle
+@onready var look_point_two = $LookPointTwo
+@onready var look_point_one = $LookPointOne
+var DelayLooking = false
+var LookingOrMoving = "Looking"
+var lookSpeed = 4
+var NavFinished = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Hit()
 	_on_partrol_patrol()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	Pathfind(delta)
+	if LookingOrMoving == "Moving":
+		Pathfind(delta)
+		lookSpeed = 4
+		NavFinished= false
+	elif LookingOrMoving == "Looking":
+		lookSpeed = 0.5
+		lookAt(angle, delta)
 
 func Pathfind(delta):
 	Current_Position = self.global_position
@@ -42,7 +56,7 @@ func Pathfind(delta):
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
-	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * 4)
+	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * lookSpeed)
 
 
 func Shoot():
@@ -52,20 +66,16 @@ func Face():
 	pass #Face Derection spesifide by Other Functions AND Swivile as spesifide by BeeHaveTree
 
 func Hit():
-	HP -= 10 # Reduces enemy HP
-	print(HP) # Here for testing
-	Health_Changed.emit(HP) # Gabriel wants this here for Beehave iirc
-	if HP <= 0:
-		queue_free() # If HP is brought to or below zero as the result of a hit then destroy the enemy
+	Health_Changed.emit(HP)
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 
 
 func _on_partrol_patrol():
+	LookingOrMoving = "Moving"
 	Target_Position = pathOne.get_point_position(path_Progress)
 	navigation_agent_2d.target_position = Target_Position
-	print(Target_Position)
 	path_Progress += 1
 	if Path_Length == path_Progress:
 		path_Progress = 0
@@ -73,16 +83,17 @@ func _on_partrol_patrol():
 	Movement_Speed = 25
 
 
-func _on_vision_cone_2d_vision_enterd():
-	True_False = true
-	PlayerDetected.emit(True_False)
-	lookat = 1
+func _on_vision_cone_2d_vision_enterd(body):
+	if body == Follow_Target:
+		True_False = true
+		PlayerDetected.emit(True_False)
 	
 
 func _on_vision_cone_2d_vision_exited(body):
-	lookat = 0
-	True_False = false
-	PlayerDetected.emit(True_False)
+	if body == Follow_Target:
+		lookat = 0
+		True_False = false
+		PlayerDetected.emit(True_False)
 
 
 func _on_follow_follow():
@@ -91,3 +102,43 @@ func _on_follow_follow():
 		navigation_agent_2d.target_position = Target_Position
 		lookat = 1
 		Movement_Speed = 40
+		LookingOrMoving = "Moving"
+
+
+func _on_look_around_look_around():
+	LookingOrMoving = "Looking"
+	print("start")
+	print(LookingOrMoving, " lookwww")
+	print(NavFinished)
+	#while NavFinished == false:
+	#	await get_tree().create_timer(0.1).timeout
+	if NavFinished == true:
+		print("done3")
+		angle = (look_point_one.global_position - self.global_position).angle()
+		var angle2 = (look_point_two.global_position - self.global_position).angle()
+		print("done2")
+		await get_tree().create_timer(2).timeout
+		angle = angle2
+		print("done1")
+		await get_tree().create_timer(2).timeout
+		LookAroundFinished.emit()
+		print("done")
+	else:
+		LookAroundFinished.emit()
+		print("failed")
+
+
+func _on_navigation_agent_2d_target_reached():
+	await get_tree().create_timer(0.5).timeout
+	NavFinished = true
+	print(NavFinished, " finished")
+	print(LookingOrMoving, " shuld be looking")
+	if LookingOrMoving == "Looking":
+		print("called look")
+		_on_look_around_look_around()
+
+
+func _on_navigation_agent_2d_path_changed():
+	#print(navigation_agent_2d.get_current_navigation_path_index())
+	if navigation_agent_2d.get_current_navigation_path_index() > 8:
+		LookAroundFinished.emit()
