@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_0q2qp"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_q6rkr"]
-[ext_resource type="PackedScene" uid="uid://dsl00aftrb6fl" path="res://Scenes/EnemyTemplate.tscn" id="2_qsg40"]
+[ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="2_qsg40"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_usg1f"]
 
 [sub_resource type="Curve2D" id="Curve2D_3up1g"]
