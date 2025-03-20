@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var Bullet : PackedScene
 
+var XP = 0
+
 @export var speed = 42 # Nobody change this variable
 
 func get_input():
@@ -23,3 +25,7 @@ func shoot():
 	var b = Bullet.instantiate()
 	owner.add_child(b)
 	b.transform = $Marker2D.global_transform
+
+func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
+	XP += 10
+	print("XP" + str(XP))

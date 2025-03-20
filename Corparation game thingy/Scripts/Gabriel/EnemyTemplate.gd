@@ -65,8 +65,13 @@ func Shoot():
 func Face():
 	pass #Face Derection spesifide by Other Functions AND Swivile as spesifide by BeeHaveTree
 
-func Hit():
-	Health_Changed.emit(HP)
+func Hit(): # On hit by bullet- had to rewrite this because Gabriel didn't github good :(
+	HP -= 10 # Reduces HP by 10 when hit by bullet
+	print(str(HP)) # Prints current HP to console- for ease of debugging
+	Health_Changed.emit(HP) # This was in Gabriel's original hit function. I beelieve it's for beehave.
+	if HP <= 0: # If the enemy is dead:
+		Follow_Target.Killed_Enemy()
+		queue_free() # Destroy the enemy- may change this to stop it moving once we have dead enemies from Sam
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
