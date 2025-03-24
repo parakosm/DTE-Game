@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://e6ws5w6v61p5"]
+
+[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="1_qf61l"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-88, -306)
+scale = Vector2(11.8594, 1.90625)
+zoom = Vector2(0.31, 0.31)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(695, 58)
+scale = Vector2(11.8594, 1.90625)
+texture = ExtResource("1_qf61l")
