@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ca8jwvr74nj1i"]
+[gd_scene load_steps=23 format=4 uid="uid://ca8jwvr74nj1i"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_3y0qb"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_b0hvr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="5_5piik"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_b0hvr"]
+[ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_ye6am"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3y0qb"]
 
@@ -250,3 +251,6 @@ Follow_Target = NodePath("../Player")
 
 [node name="Area2D" parent="." instance=ExtResource("6_b0hvr")]
 position = Vector2(71, 15)
+
+[node name="Objective" parent="." instance=ExtResource("7_ye6am")]
+position = Vector2(522, 388)

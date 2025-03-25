@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var Bullet : PackedScene
 
-var XP = 0
+var XP = Global.Experience
 
 @export var speed = 42 # Nobody change this variable
 
