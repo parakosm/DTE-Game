@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var Bullet : PackedScene
 
 var XP = Global.Experience
+var Health = Global.PlayerHealth
 
 @export var speed = 42 # Nobody change this variable
 
@@ -28,4 +29,10 @@ func shoot():
 
 func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
 	XP += 10
-	print("XP" + str(XP))
+	print("XP " + str(XP))
+	
+func Hit():
+	Health -= 10
+	print("Health " + str(Health))
+	if Health <= 0:
+		get_tree().change_scene_to_file(str("res://Scenes/Death Screen.tscn"))

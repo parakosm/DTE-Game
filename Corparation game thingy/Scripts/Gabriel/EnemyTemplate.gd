@@ -2,6 +2,7 @@ extends CharacterBody2D
 @export_group("settings")
 @export var pathName: Path2D
 @export var Follow_Target: CharacterBody2D
+@export var Bullet : PackedScene
 var HP = 100
 signal Health_Changed
 signal PlayerDetected(True_False)
@@ -60,7 +61,9 @@ func lookAt(angle, delta):
 
 
 func Shoot():
-	pass #Shoot Spot Specified by BeeHaveTree
+	var b = Bullet.instantiate()
+	owner.add_child(b)
+	b.transform = $Marker2D.global_transform
 	
 func Face():
 	pass #Face Derection spesifide by Other Functions AND Swivile as spesifide by BeeHaveTree

@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=17 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_7vx65"]
+[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_hr44c"]
 [ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
 [ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
 [ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
@@ -31,6 +32,7 @@ radius = 0.880453
 [node name="EnemyTemplate" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_hg2kr")
+Bullet = ExtResource("2_hr44c")
 
 [node name="LookPointTwo" type="Marker2D" parent="."]
 position = Vector2(24, 50)
@@ -60,7 +62,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@135283")
+blackboard = NodePath("@Node@33563")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -93,6 +95,9 @@ script = ExtResource("11_saush")
 
 [node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("10_kn5sd")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, 0)
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]

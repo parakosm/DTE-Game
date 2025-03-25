@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://b2ct56ymfok3a"]
+[gd_scene load_steps=6 format=4 uid="uid://d0jtwkmgqomhx"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_o30o5"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_rwcms"]
