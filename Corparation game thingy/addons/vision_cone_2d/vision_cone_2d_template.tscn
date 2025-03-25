@@ -11,8 +11,11 @@ write_polygon2d = NodePath("VisionConeRenderer")
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="."]
 show_behind_parent = true
-color = Color(0.180392, 0.737255, 0.396078, 0.482353)
-invert_border = 10.0
+color = Color(0, 0, 0, 1)
+invert_enabled = true
+invert_border = 16384.0
+polygon = PackedVector2Array(-343, -34)
+uv = PackedVector2Array(-343, -34)
 
 [node name="VisionConeArea" type="Area2D" parent="."]
 collision_layer = 0

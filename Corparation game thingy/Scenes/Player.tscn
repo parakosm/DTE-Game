@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=9 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
 [ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_gntrk"]
@@ -10,6 +10,11 @@ radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2768e"]
 radius = 6.0
+
+[sub_resource type="Gradient" id="Gradient_gntrk"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dewec"]
+gradient = SubResource("Gradient_gntrk")
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_2qvnv")
@@ -31,6 +36,19 @@ texture = ExtResource("3_gntrk")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(14, 0)
 
+[node name="VisionCone2D" parent="." instance=ExtResource("4_dewec")]
+show_behind_parent = true
+rotation = -1.5708
+angle_deg = 70
+debug_shape = true
+
+[node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
+show_behind_parent = true
+position = Vector2(2.18547e-08, -0.499977)
+rotation = 1.5708
+scale = Vector2(1.50391, 218)
+texture = SubResource("GradientTexture1D_dewec")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
@@ -47,21 +65,3 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "YES"
-
-[node name="VisionCone2D" parent="." instance=ExtResource("4_dewec")]
-show_behind_parent = true
-rotation = -1.5708
-angle_deg = 70
-ray_count = 50
-debug_shape = true
-
-[node name="VisionCone2D2" parent="VisionCone2D" instance=ExtResource("4_dewec")]
-show_behind_parent = true
-rotation = -3.14159
-angle_deg = 290
-max_distance = 25.0
-
-[node name="Polygon2D" type="Polygon2D" parent="VisionCone2D/VisionCone2D2"]
-visible = false
-show_behind_parent = true
-polygon = PackedVector2Array(-363, 398, 478, 397, 494, -462, -369, -462)
