@@ -88,13 +88,13 @@ func _on_partrol_patrol():
 	Movement_Speed = 25
 
 
-func _on_vision_cone_2d_vision_enterd(body):
+func _on_vision_cone_2d_2_vision_enterd(body):
 	if body == Follow_Target:
 		True_False = true
 		PlayerDetected.emit(True_False)
 	
 
-func _on_vision_cone_2d_vision_exited(body):
+func _on_vision_cone_2d_2_vision_exited(body):
 	if body == Follow_Target:
 		lookat = 0
 		True_False = false

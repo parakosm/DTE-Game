@@ -39,6 +39,10 @@ pathName = NodePath("../Path2D")
 Follow_Target = NodePath("../Player")
 
 [node name="EnemyTemplate2" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("2_qsg40")]
-position = Vector2(541, 109)
+position = Vector2(300, 251)
 pathName = NodePath("../Path2D")
 Follow_Target = NodePath("../Player")
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(22, -7)
+curve = SubResource("Curve2D_3up1g")

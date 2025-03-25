@@ -1,18 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://kf8tqdlm8c5t"]
+[gd_scene load_steps=3 format=3 uid="uid://cg0em3ad7vvio"]
 
-[ext_resource type="Script" uid="uid://dgj3h3qayedi" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="1_eakwj"]
-[ext_resource type="Script" uid="uid://2cdkjcmt14js" path="res://addons/vision_cone_2d/cone_editor_helper.gd" id="2_opycg"]
+[ext_resource type="Script" uid="uid://dgj3h3qayedi" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="1_ucleq"]
+[ext_resource type="Script" uid="uid://2cdkjcmt14js" path="res://addons/vision_cone_2d/cone_editor_helper.gd" id="2_qxj7c"]
 
 [node name="VisionCone2D" type="Node2D" node_paths=PackedStringArray("write_collision_polygon", "write_polygon2d")]
-script = ExtResource("1_eakwj")
+script = ExtResource("1_ucleq")
 collision_layer_mask = 2
 write_collision_polygon = NodePath("VisionConeArea/VisionConeCollider")
 write_polygon2d = NodePath("VisionConeRenderer")
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="."]
-show_behind_parent = true
-color = Color(0.180392, 0.737255, 0.396078, 0.482353)
-invert_border = 10.0
+color = Color(0.431373, 0.929412, 0.278431, 0.286275)
 
 [node name="VisionConeArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -21,7 +19,7 @@ monitorable = false
 [node name="VisionConeCollider" type="CollisionPolygon2D" parent="VisionConeArea"]
 
 [node name="DebugDraw" type="Node2D" parent="."]
-script = ExtResource("2_opycg")
+script = ExtResource("2_qxj7c")
 
 [connection signal="body_entered" from="VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]

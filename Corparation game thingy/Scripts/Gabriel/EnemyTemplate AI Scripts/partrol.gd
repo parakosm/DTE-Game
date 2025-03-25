@@ -20,6 +20,7 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 
 func _on_navigation_agent_2d_target_reached():
 	Partroling = false
+	print("1")
 	return SUCCESS
 	
 func _on_enemy_template_player_detected(test):
