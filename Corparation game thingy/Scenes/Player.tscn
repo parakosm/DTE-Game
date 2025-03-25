@@ -17,6 +17,7 @@ radius = 6.0
 gradient = SubResource("Gradient_gntrk")
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_2qvnv")
 Bullet = ExtResource("2_gntrk")
 
@@ -44,9 +45,57 @@ debug_shape = true
 
 [node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
 show_behind_parent = true
-position = Vector2(2.18547e-08, -0.499977)
+position = Vector2(0.249652, 95.5003)
 rotation = 1.5708
-scale = Vector2(1.50391, 218)
+scale = Vector2(1, 11.5)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = SubResource("GradientTexture1D_dewec")
+
+[node name="PointLight2D2" type="PointLight2D" parent="VisionCone2D"]
+show_behind_parent = true
+position = Vector2(11.7496, 95.5003)
+rotation = 1.5708
+scale = Vector2(1, 11.5)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = SubResource("GradientTexture1D_dewec")
+
+[node name="PointLight2D3" type="PointLight2D" parent="VisionCone2D"]
+show_behind_parent = true
+position = Vector2(-11.2504, 95.5003)
+rotation = 1.5708
+scale = Vector2(1, 11.5)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = SubResource("GradientTexture1D_dewec")
+
+[node name="PointLight2D4" type="PointLight2D" parent="VisionCone2D"]
+show_behind_parent = true
+position = Vector2(-22.7504, 95.5003)
+rotation = 1.5708
+scale = Vector2(1, 11.5)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 0.5
+texture = SubResource("GradientTexture1D_dewec")
+
+[node name="PointLight2D5" type="PointLight2D" parent="VisionCone2D"]
+show_behind_parent = true
+position = Vector2(34.7497, 95.5003)
+rotation = 1.5708
+scale = Vector2(1, 11.5)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 0.5
 texture = SubResource("GradientTexture1D_dewec")
 
 [node name="Camera2D" type="Camera2D" parent="."]
