@@ -39,6 +39,3 @@ curve = SubResource("Curve2D_auim0")
 
 [node name="Area2D" parent="." instance=ExtResource("5_auim0")]
 position = Vector2(296, 14)
-
-[node name="Area2D2" parent="." instance=ExtResource("5_auim0")]
-position = Vector2(122, 65)
