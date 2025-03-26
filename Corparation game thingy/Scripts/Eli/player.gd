@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
 @export var Bullet : PackedScene
+@onready var camera_2d = $Camera2D
 
 var XP = Global.Experience
 var Health = Global.PlayerHealth
 
 @export var speed = 42 # Nobody change this variable
+@export_group("settings")
+@export var TilesRight = 39
+@export var TilesDown = 20
+
+func _ready():
+	camera_2d.limit_right = TilesRight*16
+	camera_2d.limit_bottom = TilesDown*16
 
 func get_input():
 	if Input.is_action_pressed("shift"): # If the shift key is held down, the player speed is increased. Otherwise, the else sets speed to the normal value.
