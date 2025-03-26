@@ -38,14 +38,12 @@ position = Vector2(14, 0)
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_dewec")
 rotation = 1.5708
-energy = 0.15
+energy = 0.25
 shadow_enabled = true
 texture = ExtResource("4_5ixxa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 

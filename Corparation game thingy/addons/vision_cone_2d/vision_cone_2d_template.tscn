@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://kf8tqdlm8c5t"]
+[gd_scene load_steps=4 format=3 uid="uid://kf8tqdlm8c5t"]
 
 [ext_resource type="Script" uid="uid://dgj3h3qayedi" path="res://addons/vision_cone_2d/vision_cone_2d.gd" id="1_eakwj"]
 [ext_resource type="Script" uid="uid://2cdkjcmt14js" path="res://addons/vision_cone_2d/cone_editor_helper.gd" id="2_opycg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s3u2r"]
+light_mode = 2
 
 [node name="VisionCone2D" type="Node2D" node_paths=PackedStringArray("write_collision_polygon", "write_polygon2d")]
 script = ExtResource("1_eakwj")
@@ -11,6 +14,8 @@ write_polygon2d = NodePath("VisionConeRenderer")
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="."]
 show_behind_parent = true
+material = SubResource("CanvasItemMaterial_s3u2r")
+use_parent_material = true
 color = Color(0, 0, 0, 1)
 invert_enabled = true
 invert_border = 16384.0

@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
+light_mode = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -43,12 +44,14 @@ position = Vector2(24, 50)
 position = Vector2(24, -50)
 
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_7vx65")]
+use_parent_material = true
 rotation = -1.5708
 angle_deg = 60
 ray_count = 25
 max_distance = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 scale = Vector2(0.117, 0.115)
 sprite_frames = SubResource("SpriteFrames_kq1ep")
 

@@ -10,6 +10,7 @@ write_collision_polygon = NodePath("VisionConeArea/VisionConeCollider")
 write_polygon2d = NodePath("VisionConeRenderer")
 
 [node name="VisionConeRenderer" type="Polygon2D" parent="."]
+use_parent_material = true
 color = Color(0.431373, 0.929412, 0.278431, 0.286275)
 
 [node name="VisionConeArea" type="Area2D" parent="."]
