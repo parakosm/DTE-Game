@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=8 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
 [ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_gntrk"]
 [ext_resource type="Texture2D" uid="uid://cx04318mqsj0t" path="res://Assets/Player.png" id="3_gntrk"]
+[ext_resource type="Texture2D" uid="uid://doaqabud01yfr" path="res://Assets/Viewcone.png" id="4_5ixxa"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="4_dewec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_man6h"]
@@ -11,13 +12,7 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2768e"]
 radius = 6.0
 
-[sub_resource type="Gradient" id="Gradient_gntrk"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dewec"]
-gradient = SubResource("Gradient_gntrk")
-
 [node name="Player" type="CharacterBody2D"]
-z_index = 2
 script = ExtResource("1_2qvnv")
 Bullet = ExtResource("2_gntrk")
 
@@ -37,66 +32,19 @@ texture = ExtResource("3_gntrk")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(14, 0)
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+show_behind_parent = true
+energy = 0.75
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_5ixxa")
+
 [node name="VisionCone2D" parent="." instance=ExtResource("4_dewec")]
+visible = false
 show_behind_parent = true
 rotation = -1.5708
 angle_deg = 70
 debug_shape = true
-
-[node name="PointLight2D" type="PointLight2D" parent="VisionCone2D"]
-show_behind_parent = true
-position = Vector2(0.249652, 95.5003)
-rotation = 1.5708
-scale = Vector2(1, 11.5)
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = SubResource("GradientTexture1D_dewec")
-
-[node name="PointLight2D2" type="PointLight2D" parent="VisionCone2D"]
-show_behind_parent = true
-position = Vector2(11.7496, 95.5003)
-rotation = 1.5708
-scale = Vector2(1, 11.5)
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = SubResource("GradientTexture1D_dewec")
-
-[node name="PointLight2D3" type="PointLight2D" parent="VisionCone2D"]
-show_behind_parent = true
-position = Vector2(-11.2504, 95.5003)
-rotation = 1.5708
-scale = Vector2(1, 11.5)
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = SubResource("GradientTexture1D_dewec")
-
-[node name="PointLight2D4" type="PointLight2D" parent="VisionCone2D"]
-show_behind_parent = true
-position = Vector2(-22.7504, 95.5003)
-rotation = 1.5708
-scale = Vector2(1, 11.5)
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = SubResource("GradientTexture1D_dewec")
-
-[node name="PointLight2D5" type="PointLight2D" parent="VisionCone2D"]
-show_behind_parent = true
-position = Vector2(34.7497, 95.5003)
-rotation = 1.5708
-scale = Vector2(1, 11.5)
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 0.5
-texture = SubResource("GradientTexture1D_dewec")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
