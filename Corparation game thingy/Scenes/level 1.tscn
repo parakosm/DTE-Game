@@ -16,7 +16,6 @@ point_count = 6
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 1023
 visibility_layer = 1023
-color = Color(0, 0, 0, 0.784314)
 
 [node name="Walls" type="TileMapLayer" parent="."]
 top_level = true
@@ -34,7 +33,7 @@ tile_map_data = PackedByteArray("AAAEAAMAAQAEAAUAAAAEAAQAAQAEAAYAAAAEAAUAAQAEAAc
 tile_set = ExtResource("1_o30o5")
 
 [node name="Player" parent="." instance=ExtResource("3_a2n4b")]
-position = Vector2(152, 113)
+position = Vector2(105, 76)
 speed = 50
 
 [node name="Path2D" type="Path2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=17 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_7vx65"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
 [ext_resource type="Script" uid="uid://d15gdyd0wt2bp" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="11_a7gxt"]
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
@@ -29,6 +31,8 @@ animations = [{
 radius = 0.880453
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
+light_mask = 3
+material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
 script = ExtResource("1_hg2kr")
 
