@@ -121,7 +121,6 @@ func _on_follow_follow():
 func _on_cooldown_timer_timeout():
 	can_shoot = true
 
-
 func _on_look_around_look_around():
 	LookingOrMoving = "Looking"
 	print("start")
