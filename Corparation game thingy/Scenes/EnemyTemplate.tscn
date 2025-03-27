@@ -44,6 +44,7 @@ position = Vector2(24, 50)
 position = Vector2(24, -50)
 
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_7vx65")]
+visible = false
 use_parent_material = true
 rotation = -1.5708
 angle_deg = 60
@@ -64,11 +65,10 @@ path_desired_distance = 1.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 20.0
-debug_enabled = true
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21780")
+blackboard = NodePath("@Node@22912")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
