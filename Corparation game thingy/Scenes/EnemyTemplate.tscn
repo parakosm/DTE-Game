@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_7vx65"]
 [ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
+[ext_resource type="Texture2D" uid="uid://be3p7e6sf7kmx" path="res://Assets/Enemy Variations/enemy standard.png" id="3_7vx65"]
 [ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
 [ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
 [ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
-[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="7_xjmnn"]
 [ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
 [ext_resource type="Script" uid="uid://kw5jur2q22cq" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_1f1ok"]
 [ext_resource type="Script" uid="uid://jb1mmo4yqby" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_je0eg"]
@@ -21,9 +21,9 @@ light_mode = 2
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_xjmnn")
+"texture": ExtResource("3_7vx65")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -31,7 +31,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
 radius = 0.880453
 
-[node name="EnemyTemplate" type="CharacterBody2D"]
+[node name="EnemyTemplateStndard" type="CharacterBody2D"]
 light_mask = 3
 material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
@@ -52,8 +52,9 @@ max_distance = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(0.117, 0.115)
+scale = Vector2(0.4585, 0.3575)
 sprite_frames = SubResource("SpriteFrames_kq1ep")
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(7.95045, 7.68115)
@@ -67,7 +68,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21808")
+blackboard = NodePath("@Node@21790")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
