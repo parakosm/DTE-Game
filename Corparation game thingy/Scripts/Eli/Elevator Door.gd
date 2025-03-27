@@ -8,5 +8,4 @@ func _on_body_entered(body: Node2D) -> void:
 			get_tree().change_scene_to_file(str("res://End Screen.tscn"))
 		else:
 			Global.KeycardObtained = false
-			print(str("res://Scenes/level ", Global.GlobalLevel, ".tscn"))
-			get_tree().change_scene_to_file(str("res://Scenes/level ", Global.GlobalLevel, ".tscn"))
+			get_tree().change_scene_to_file(str("res://Scenes/elevator.tscn"))
