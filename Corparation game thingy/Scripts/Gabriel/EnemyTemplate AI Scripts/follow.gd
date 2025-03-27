@@ -18,8 +18,8 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		follow.emit()
 		return SUCCESS
 
-
 func _on_enemy_template_player_detected(detectedPlayer):
+	await get_tree().create_timer(1).timeout
 	PlayerDetected = detectedPlayer
 
 
