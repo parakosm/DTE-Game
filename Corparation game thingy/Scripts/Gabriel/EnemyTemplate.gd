@@ -107,16 +107,16 @@ func _on_vision_cone_2d_2_vision_exited(body):
 
 
 func _on_follow_follow():
+	if can_shoot:
+		can_shoot = false
+		Shoot()
+		$CooldownTimer.start()
 	if Target_Position != Follow_Target.position:
 		Target_Position = Follow_Target.position
 		navigation_agent_2d.target_position = Target_Position
 		lookat = 1
 		Movement_Speed = 40
 		LookingOrMoving = "Moving"
-		if can_shoot:
-			can_shoot = false
-			Shoot()
-			$CooldownTimer.start()
 
 func _on_cooldown_timer_timeout():
 	can_shoot = true
