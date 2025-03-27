@@ -107,7 +107,7 @@ func _on_vision_cone_2d_2_vision_exited(body):
 
 
 func _on_follow_follow():
-	if can_shoot:
+	if can_shoot == true:
 		can_shoot = false
 		Shoot()
 		$CooldownTimer.start()
