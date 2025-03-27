@@ -46,8 +46,9 @@ position = Vector2(24, -50)
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_7vx65")]
 visible = false
 use_parent_material = true
+position = Vector2(-15, 0)
 rotation = -1.5708
-angle_deg = 60
+angle_deg = 70
 ray_count = 25
 max_distance = 200.0
 
@@ -68,7 +69,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@22912")
+blackboard = NodePath("@Node@48176")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -106,6 +107,7 @@ script = ExtResource("10_kn5sd")
 position = Vector2(18, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.001
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]
@@ -120,3 +122,4 @@ position = Vector2(18, 0)
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
