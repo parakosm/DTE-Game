@@ -62,7 +62,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@33563")
+blackboard = NodePath("@Node@21780")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -79,7 +79,7 @@ script = ExtResource("6_2bu6y")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_1f1ok")
-wait_time = 2.0
+wait_time = 0.5
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]
@@ -98,6 +98,8 @@ script = ExtResource("10_kn5sd")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(18, 0)
+
+[node name="CooldownTimer" type="Timer" parent="."]
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]

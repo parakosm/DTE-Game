@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cdnxralbyu81x"]
+[gd_scene load_steps=7 format=4 uid="uid://cdnxralbyu81x"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_0q2qp"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_q6rkr"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="2_qsg40"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_usg1f"]
+[ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="5_b2bpf"]
 
 [sub_resource type="Curve2D" id="Curve2D_3up1g"]
 _data = {
@@ -46,3 +47,6 @@ Follow_Target = NodePath("../Player")
 [node name="Path2D2" type="Path2D" parent="."]
 position = Vector2(22, -7)
 curve = SubResource("Curve2D_3up1g")
+
+[node name="Area2D" parent="." instance=ExtResource("5_b2bpf")]
+position = Vector2(61, 23)

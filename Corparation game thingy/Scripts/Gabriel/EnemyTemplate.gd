@@ -1,9 +1,11 @@
 extends CharacterBody2D
+var can_shoot = true
 @export_group("settings")
 @export var pathName: Path2D
 @export var Follow_Target: CharacterBody2D
 @export var Bullet : PackedScene
 var HP = 100
+var canShoot = true
 signal Health_Changed
 signal PlayerDetected(True_False)
 signal LookAroundFinished
@@ -111,6 +113,13 @@ func _on_follow_follow():
 		lookat = 1
 		Movement_Speed = 40
 		LookingOrMoving = "Moving"
+		if can_shoot:
+			can_shoot = false
+			Shoot()
+			$CooldownTimer.start()
+
+func _on_cooldown_timer_timeout():
+	can_shoot = true
 
 
 func _on_look_around_look_around():
