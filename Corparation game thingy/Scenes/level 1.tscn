@@ -34,7 +34,7 @@ tile_map_data = PackedByteArray("AAAEAAMAAQAEAAUAAAAEAAQAAQAEAAYAAAAEAAUAAQAEAAc
 tile_set = ExtResource("1_o30o5")
 
 [node name="Player" parent="." instance=ExtResource("3_a2n4b")]
-position = Vector2(11, 86)
+position = Vector2(57, 101)
 speed = 50
 TilesRight = 40
 TilesDown = 21
@@ -44,8 +44,7 @@ position = Vector2(6, 2)
 curve = SubResource("Curve2D_3up1g")
 
 [node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("4_6jqpp")]
-visible = false
-position = Vector2(71, 55)
+position = Vector2(75, 194)
 pathName = NodePath("../Path2D")
 Follow_Target = NodePath("../Player")
 Bullet = ExtResource("5_f66m2")

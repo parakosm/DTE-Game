@@ -67,7 +67,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21795")
+blackboard = NodePath("@Node@21808")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -119,3 +119,4 @@ position = Vector2(18, 0)
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
