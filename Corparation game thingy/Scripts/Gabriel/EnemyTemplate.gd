@@ -25,7 +25,7 @@ var angle
 @onready var look_point_one = $LookPointOne
 var DelayLooking = false
 var LookingOrMoving = "Looking"
-var lookSpeed = 4
+var lookSpeed = 2
 var NavFinished = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +36,7 @@ func _ready():
 func _physics_process(delta) -> void:
 	if LookingOrMoving == "Moving":
 		Pathfind(delta)
-		lookSpeed = 4
+		lookSpeed = 2
 		NavFinished= false
 	elif LookingOrMoving == "Looking":
 		lookSpeed = 0.5
