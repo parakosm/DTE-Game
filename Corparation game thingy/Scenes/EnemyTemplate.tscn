@@ -37,16 +37,8 @@ material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
 script = ExtResource("1_hg2kr")
 
-[node name="LookPointTwo" type="Marker2D" parent="."]
-position = Vector2(24, 50)
-
-[node name="LookPointOne" type="Marker2D" parent="."]
-position = Vector2(24, -50)
-
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_7vx65")]
-visible = false
 use_parent_material = true
-position = Vector2(-15, 0)
 rotation = -1.5708
 angle_deg = 70
 ray_count = 25
@@ -65,11 +57,19 @@ shape = SubResource("CircleShape2D_yr4x4")
 path_desired_distance = 1.0
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 20.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationAgent2D"]
+vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7, -2, 4, -6)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21794")
+blackboard = NodePath("@Node@21784")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -86,7 +86,7 @@ script = ExtResource("6_2bu6y")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_1f1ok")
-wait_time = 0.5
+wait_time = 1.0
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]
@@ -103,14 +103,15 @@ script = ExtResource("11_saush")
 [node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("10_kn5sd")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(18, 0)
+[node name="Unused" type="Node" parent="."]
 
-[node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="LookPointTwo" type="Marker2D" parent="Unused"]
+visible = false
+position = Vector2(24, 50)
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="CooldownTimer"]
-vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7, -2, 4, -6)
+[node name="LookPointOne" type="Marker2D" parent="Unused"]
+visible = false
+position = Vector2(24, -50)
 
 [connection signal="Health_Changed" from="." to="BeehaveTree/SelectorComposite/Health/HealthChecker" method="_on_enemy_template_health_changed"]
 [connection signal="PlayerDetected" from="." to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_enemy_template_player_detected"]
@@ -123,6 +124,6 @@ vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

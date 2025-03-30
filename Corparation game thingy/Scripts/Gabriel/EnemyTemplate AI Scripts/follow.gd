@@ -10,12 +10,16 @@ var targetReached = false
 ## action is completed.
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if PlayerDetected == false and targetReached == true:
+	if Global.Spotted == true:
+		follow.emit()
+		return SUCCESS
+	elif PlayerDetected == false and targetReached == true:
 		return FAILURE
 	elif PlayerDetected == false:
 		return FAILURE
 	else:
 		follow.emit()
+		Global.Spotted = true
 		return SUCCESS
 
 func _on_enemy_template_player_detected(detectedPlayer):

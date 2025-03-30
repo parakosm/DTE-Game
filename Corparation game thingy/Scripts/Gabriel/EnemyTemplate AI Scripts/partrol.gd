@@ -9,7 +9,9 @@ var stop = false
 ## action is completed.
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if stop == true:
+	if Global.Spotted == true:
+		return FAILURE
+	elif stop == true:
 		return FAILURE
 	elif Partroling == true:
 		return RUNNING
