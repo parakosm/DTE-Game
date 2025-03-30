@@ -52,7 +52,9 @@ max_distance = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(0.4585, 0.3575)
+position = Vector2(-2, 0)
+rotation = 1.5708
+scale = Vector2(0.876782, 0.683641)
 sprite_frames = SubResource("SpriteFrames_kq1ep")
 frame_progress = 1.0
 

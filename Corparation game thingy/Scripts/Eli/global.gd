@@ -6,4 +6,4 @@ var PlayerHealth = 100
 
 var GlobalLevel = 1
 
-var KeycardObtained = true
+var KeycardObtained = false
