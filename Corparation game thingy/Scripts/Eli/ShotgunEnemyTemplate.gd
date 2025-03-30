@@ -110,6 +110,7 @@ func _on_follow_follow():
 	if can_shoot == true:
 		can_shoot = false
 		Shoot()
+		Shoot()
 		$CooldownTimer.start()
 	if Target_Position != Follow_Target.position:
 		Target_Position = Follow_Target.position

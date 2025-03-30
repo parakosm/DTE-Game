@@ -1,19 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=17 format=3 uid="uid://b5gik5j2sc0ny"]
 
-[ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
-[ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_7vx65"]
-[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_hr44c"]
-[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_tc6eq"]
-[ext_resource type="Texture2D" uid="uid://ctkplk4tm0735" path="res://Assets/Enemy Variations/enemy w sniper.png" id="3_7vx65"]
-[ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="3_xo6hj"]
-[ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_q6sf1"]
-[ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="6_2bu6y"]
-[ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="8_m2nrl"]
-[ext_resource type="Script" uid="uid://kw5jur2q22cq" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_1f1ok"]
-[ext_resource type="Script" uid="uid://jb1mmo4yqby" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_je0eg"]
-[ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="10_kn5sd"]
-[ext_resource type="Script" uid="uid://d15gdyd0wt2bp" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="11_a7gxt"]
-[ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="11_saush"]
+[ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_qv37j"]
+[ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_4kfit"]
+[ext_resource type="Texture2D" uid="uid://ctkplk4tm0735" path="res://Assets/Enemy Variations/enemy w sniper.png" id="3_qv37j"]
+[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_u8sdu"]
+[ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="5_ug5yl"]
+[ext_resource type="Script" uid="uid://egw5ej7svxdd" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_otslc"]
+[ext_resource type="Script" uid="uid://bkyuftkbtmp5" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/HealthChecker.gd" id="7_0sk3a"]
+[ext_resource type="Script" uid="uid://cw7ht1cb74su5" path="res://addons/beehave/nodes/leaves/action.gd" id="8_lxtbo"]
+[ext_resource type="Script" uid="uid://kw5jur2q22cq" path="res://addons/beehave/nodes/decorators/delayer.gd" id="9_d7alp"]
+[ext_resource type="Script" uid="uid://jb1mmo4yqby" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_mm4b4"]
+[ext_resource type="Script" uid="uid://d15gdyd0wt2bp" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="11_qv1ov"]
+[ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="12_jwg3g"]
+[ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="13_fkqrm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
 light_mode = 2
@@ -22,7 +21,7 @@ light_mode = 2
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_7vx65")
+"texture": ExtResource("3_qv37j")
 }],
 "loop": false,
 "name": &"default",
@@ -32,12 +31,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
 radius = 0.628895
 
-[node name="EnemyTemplateStndard" type="CharacterBody2D"]
+[node name="EnemyTemplateSniper" type="CharacterBody2D"]
 light_mask = 3
 material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
-script = ExtResource("1_hg2kr")
-Bullet = ExtResource("2_hr44c")
+script = ExtResource("1_qv37j")
 
 [node name="LookPointTwo" type="Marker2D" parent="."]
 position = Vector2(24, 50)
@@ -45,7 +43,7 @@ position = Vector2(24, 50)
 [node name="LookPointOne" type="Marker2D" parent="."]
 position = Vector2(24, -50)
 
-[node name="VisionCone2D2" parent="." instance=ExtResource("2_7vx65")]
+[node name="VisionCone2D2" parent="." instance=ExtResource("2_4kfit")]
 use_parent_material = true
 rotation = -1.5708
 angle_deg = 60
@@ -72,40 +70,40 @@ avoidance_enabled = true
 radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@22786")
+script = ExtResource("4_u8sdu")
+blackboard = NodePath("@Node@32078")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
-script = ExtResource("3_xo6hj")
+script = ExtResource("5_ug5yl")
 
 [node name="Health" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("4_q6sf1")
+script = ExtResource("6_otslc")
 
 [node name="HealthChecker" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
-script = ExtResource("8_m2nrl")
+script = ExtResource("7_0sk3a")
 
 [node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Health"]
-script = ExtResource("6_2bu6y")
+script = ExtResource("8_lxtbo")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("9_1f1ok")
+script = ExtResource("9_d7alp")
 wait_time = 0.5
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]
-script = ExtResource("10_je0eg")
+script = ExtResource("10_mm4b4")
 metadata/_custom_type_script = "uid://jb1mmo4yqby"
 
 [node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator"]
-script = ExtResource("11_a7gxt")
+script = ExtResource("11_qv1ov")
 metadata/_custom_type_script = "uid://d15gdyd0wt2bp"
 
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator"]
-script = ExtResource("11_saush")
+script = ExtResource("12_jwg3g")
 
 [node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("10_kn5sd")
+script = ExtResource("13_fkqrm")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(18, 0)

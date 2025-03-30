@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_rwcms"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="3_a2n4b"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="4_6jqpp"]
-[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="5_f66m2"]
+[ext_resource type="PackedScene" uid="uid://u4kq8dc6rjvk" path="res://Scenes/Shotgun Enemy.tscn" id="4_f66m2"]
 
 [sub_resource type="Curve2D" id="Curve2D_3up1g"]
 _data = {
@@ -34,7 +34,7 @@ tile_map_data = PackedByteArray("AAAEAAMAAQAEAAUAAAAEAAQAAQAEAAYAAAAEAAUAAQAEAAc
 tile_set = ExtResource("1_o30o5")
 
 [node name="Player" parent="." instance=ExtResource("3_a2n4b")]
-position = Vector2(40, 184)
+position = Vector2(34, 188)
 speed = 50
 TilesRight = 40
 TilesDown = 21
@@ -43,8 +43,12 @@ TilesDown = 21
 position = Vector2(6, 2)
 curve = SubResource("Curve2D_3up1g")
 
-[node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("4_6jqpp")]
-position = Vector2(75, 194)
+[node name="EnemyTemplateShotgun" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("4_f66m2")]
+position = Vector2(363, 89)
 pathName = NodePath("../Path2D")
 Follow_Target = NodePath("../Player")
-Bullet = ExtResource("5_f66m2")
+
+[node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("4_6jqpp")]
+position = Vector2(78, 191)
+pathName = NodePath("../Path2D")
+Follow_Target = NodePath("../Player")
