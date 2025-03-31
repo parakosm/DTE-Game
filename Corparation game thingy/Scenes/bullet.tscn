@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://clr34anfqldsc"]
+[gd_scene load_steps=5 format=3 uid="uid://clr34anfqldsc"]
 
 [ext_resource type="Script" uid="uid://blpephiyfnvow" path="res://Scripts/Eli/bullet.gd" id="1_oduel"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="1_xjght"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oduel"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oduel"]
 radius = 3.0
@@ -11,6 +14,7 @@ collision_layer = 2
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_oduel")
 position = Vector2(-2.38419e-07, 0)
 rotation = 1.5708
 scale = Vector2(0.0466283, 0.0466283)
