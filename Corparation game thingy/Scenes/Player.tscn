@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
 [ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_gntrk"]
-[ext_resource type="Texture2D" uid="uid://cx04318mqsj0t" path="res://Assets/Player.png" id="3_gntrk"]
+[ext_resource type="Texture2D" uid="uid://darqs0y7nosm3" path="res://Assets/player/Player.png" id="3_dewec"]
 [ext_resource type="Texture2D" uid="uid://breaqwbhb3bqr" path="res://Assets/pixil-frame-0.png" id="4_dewec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_man6h"]
@@ -29,7 +29,7 @@ shape = SubResource("CircleShape2D_2768e")
 position = Vector2(6, 0)
 rotation = 1.5708
 scale = Vector2(0.773328, 0.773328)
-texture = ExtResource("3_gntrk")
+texture = ExtResource("3_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(14, 0)

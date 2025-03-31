@@ -11,4 +11,3 @@ func _use_tile_data_runtime_update(coords):
 func _tile_data_runtime_update(coords, tile_data):
 	if coords in walls.get_used_cells_by_id(0) or coords in objects.get_used_cells_by_id(1):
 		tile_data.set_navigation_polygon(0, null)
-		print("remove")
