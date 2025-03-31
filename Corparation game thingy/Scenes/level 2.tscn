@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://rjvh1nqqcqaf"]
+[gd_scene load_steps=14 format=4 uid="uid://rjvh1nqqcqaf"]
 
-[ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_3y0qb"]
+[ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_3y0qb"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="5_5piik"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="7_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_ye6am"]
+[ext_resource type="PackedScene" uid="uid://u4kq8dc6rjvk" path="res://Scenes/Shotgun Enemy.tscn" id="8_l6jtc"]
 
 [sub_resource type="Curve2D" id="Curve2D_f66m2"]
 _data = {
@@ -34,9 +35,9 @@ point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_l6jtc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 564, 185, 0, 0, 0, 0, 390, 193, 0, 0, 0, 0, 391, 121, 0, 0, 0, 0, 439, 119, 0, 0, 0, 0, 436, 148, 0, 0, 0, 0, 488, 148, 0, 0, 0, 0, 490, 117, 0, 0, 0, 0, 539, 121, 0, 0, 0, 0, 587, 116, 0, 0, 0, 0, 594, 136, 0, 0, 0, 0, 569, 138, 0, 0, 0, 0, 573, 144)
+"points": PackedVector2Array(0, 0, 0, 0, 564, 185, 0, 0, 0, 0, 390, 193, 0, 0, 0, 0, 391, 121, 0, 0, 0, 0, 439, 119, 0, 0, 0, 0, 436, 148, 0, 0, 0, 0, 488, 148, 0, 0, 0, 0, 490, 117, 0, 0, 0, 0, 587, 116, 0, 0, 0, 0, 594, 136, 0, 0, 0, 0, 566, 153)
 }
-point_count = 12
+point_count = 10
 
 [node name="Game" type="Node2D"]
 z_index = 1
@@ -68,10 +69,10 @@ tile_set = ExtResource("1_3y0qb")
 position = Vector2(312, 273)
 
 [node name="Objective" parent="World" instance=ExtResource("7_ye6am")]
-position = Vector2(391, 139)
+position = Vector2(391, 103)
 
 [node name="Player" parent="World" instance=ExtResource("4_l6jtc")]
-position = Vector2(51, 11)
+position = Vector2(52, 10)
 rotation = 2.22181
 speed = 50
 TilesRight = 40
@@ -103,12 +104,6 @@ pathName = NodePath("../../EnemyPatroalPaths/Path2D4")
 Follow_Target = NodePath("../../World/Player")
 Bullet = ExtResource("7_l6jtc")
 
-[node name="EnemyTemplate4" parent="Enemys" node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("5_5piik")]
-position = Vector2(97, 29)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
-Follow_Target = NodePath("../../World/Player")
-Bullet = ExtResource("7_l6jtc")
-
 [node name="EnemyTemplate" parent="Enemys" node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("5_5piik")]
 position = Vector2(27, 199)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D")
@@ -130,6 +125,12 @@ Bullet = ExtResource("7_l6jtc")
 [node name="EnemyTemplate6" parent="Enemys" node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("5_5piik")]
 position = Vector2(581, 187)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D5")
+Follow_Target = NodePath("../../World/Player")
+Bullet = ExtResource("7_l6jtc")
+
+[node name="EnemyTemplateShotgun" parent="Enemys" node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("8_l6jtc")]
+position = Vector2(102, 29)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
 Follow_Target = NodePath("../../World/Player")
 Bullet = ExtResource("7_l6jtc")
 

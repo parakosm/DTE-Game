@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://d0jtwkmgqomhx"]
 
-[ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/Tile Set 1.tres" id="1_o30o5"]
+[ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_o30o5"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_rwcms"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="3_a2n4b"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="4_6jqpp"]
@@ -26,7 +26,7 @@ _data = {
 }
 point_count = 8
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 z_index = 1
 
 [node name="World" type="Node" parent="."]
