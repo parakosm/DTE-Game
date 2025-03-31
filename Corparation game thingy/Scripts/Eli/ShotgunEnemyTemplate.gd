@@ -1,12 +1,11 @@
 extends CharacterBody2D
 var can_shoot = true
-var canShoot = true
-var shoot = false
 @export_group("settings")
 @export var pathName: Path2D
 @export var Follow_Target: CharacterBody2D
 @export var Bullet : PackedScene
 var HP = 100
+var canShoot = true
 signal Health_Changed
 signal PlayerDetected(True_False)
 signal LookAroundFinished
@@ -26,14 +25,14 @@ var angle
 @onready var look_point_one = $LookPointOne
 var DelayLooking = false
 var LookingOrMoving = "Looking"
-var lookSpeed = 2
+var lookSpeed = 4
 var NavFinished = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Hit()
 	_on_partrol_patrol()
 
-# Called every pysics frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	if LookingOrMoving == "Moving":
 		Pathfind(delta)
@@ -57,11 +56,6 @@ func Pathfind(delta):
 		angle = (Next_Step - self.global_position).angle()
 	elif lookat == 1:
 		angle = (Follow_Target.position - self.global_position).angle()
-		if shoot == true:
-			if can_shoot == true:
-				can_shoot = false
-				Shoot()
-				$CooldownTimer.start()
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
@@ -102,19 +96,22 @@ func _on_partrol_patrol():
 func _on_vision_cone_2d_2_vision_enterd(body):
 	if body == Follow_Target:
 		True_False = true
-		shoot = true
 		PlayerDetected.emit(True_False)
 	
 
 func _on_vision_cone_2d_2_vision_exited(body):
 	if body == Follow_Target:
 		lookat = 0
-		shoot = false
 		True_False = false
 		PlayerDetected.emit(True_False)
 
 
 func _on_follow_follow():
+	if can_shoot == true:
+		can_shoot = false
+		Shoot()
+		Shoot()
+		$CooldownTimer.start()
 	if Target_Position != Follow_Target.position:
 		Target_Position = Follow_Target.position
 		navigation_agent_2d.target_position = Target_Position
