@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://u4kq8dc6rjvk"]
+[gd_scene load_steps=18 format=3 uid="uid://u4kq8dc6rjvk"]
 
 [ext_resource type="Script" uid="uid://dcpl3e5d4c4jf" path="res://Scripts/Eli/ShotgunEnemyTemplate.gd" id="1_r3l2h"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_iuaer"]
+[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_ogk43"]
 [ext_resource type="Texture2D" uid="uid://ctkplk4tm0735" path="res://Assets/Enemy Variations/enemy w sniper.png" id="3_ogk43"]
 [ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_wiv8c"]
 [ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="5_pe1hx"]
@@ -36,6 +37,7 @@ light_mask = 3
 material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
 script = ExtResource("1_r3l2h")
+Bullet = ExtResource("2_ogk43")
 
 [node name="LookPointTwo" type="Marker2D" parent="."]
 position = Vector2(24, 50)
@@ -71,7 +73,7 @@ radius = 20.0
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_wiv8c")
-blackboard = NodePath("@Node@55223")
+blackboard = NodePath("@Node@21786")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

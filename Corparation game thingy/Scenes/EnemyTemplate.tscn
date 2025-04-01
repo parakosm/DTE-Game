@@ -66,7 +66,11 @@ wait_time = 0.25
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
+<<<<<<< Updated upstream
 blackboard = NodePath("@Node@21804")
+=======
+blackboard = NodePath("@Node@21784")
+>>>>>>> Stashed changes
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
