@@ -13,6 +13,7 @@ var Velocity
 var path_Progress = 0
 var angle
 var lookSpeed = 4
+@onready var progress_bar = $Control/ProgressBar
 
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
@@ -47,7 +48,8 @@ func Shoot():
 
 func Hit(): # On hit by bullet- had to rewrite this because Gabriel didn't github good :(
 	HP -= 10 # Reduces HP by 10 when hit by bullet
-	print(str(HP)) # Prints current HP to console- for ease of debugging
+	progress_bar.visible = true
+	progress_bar.value = HP
 	if HP <= 0: # If the enemy is dead:
 		Follow_Target.Killed_Enemy()
 		queue_free() # Destroy the enemy- may change this to stop it moving once we have dead enemies from Sam

@@ -21,6 +21,10 @@ BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 Global="*res://Scripts/Eli/global.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/vision_cone_2d/plugin.cfg")

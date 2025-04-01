@@ -14,6 +14,7 @@ var speed = 42 # Nobody change this variable
 @onready var xp = $Camera2D/CanvasLayer/Control/XP
 @onready var timer = $Camera2D/CanvasLayer/Control/Timer
 @onready var time_remainig = $TimeRemainig
+@onready var health = $Camera2D/CanvasLayer/Control/Health
 
 func _ready():
 	camera_2d.limit_right = TilesRight*16
@@ -48,11 +49,10 @@ func shoot():
 func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
 	XP += 10
 	xp.text = str("XP: ", XP)
-	print("XP " + str(XP))
 	
 func Hit():
 	Health -= 10
-	print("Health " + str(Health))
+	health.text = str("HP: ", Health)
 	if Health <= 0:
 		get_tree().change_scene_to_file(str("res://Scenes/Death Screen.tscn"))
 		

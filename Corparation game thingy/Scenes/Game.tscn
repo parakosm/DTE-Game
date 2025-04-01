@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://cdnxralbyu81x"]
+[gd_scene load_steps=6 format=4 uid="uid://bx56al3eplany"]
 
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_q6rkr"]
 [ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="2_qsg40"]
@@ -24,21 +24,18 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAE
 
 [node name="Player" parent="." instance=ExtResource("4_usg1f")]
 position = Vector2(306, 90)
-speed = 50
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(6, 2)
 curve = SubResource("Curve2D_3up1g")
 
-[node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("2_qsg40")]
+[node name="EnemyTemplate" parent="." node_paths=PackedStringArray("pathName") instance=ExtResource("2_qsg40")]
 position = Vector2(146.638, 71.6539)
 pathName = NodePath("../Path2D")
-Follow_Target = NodePath("../Player")
 
-[node name="EnemyTemplate2" parent="." node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("2_qsg40")]
+[node name="EnemyTemplate2" parent="." node_paths=PackedStringArray("pathName") instance=ExtResource("2_qsg40")]
 position = Vector2(300, 251)
 pathName = NodePath("../Path2D")
-Follow_Target = NodePath("../Player")
 
 [node name="Path2D2" type="Path2D" parent="."]
 position = Vector2(22, -7)

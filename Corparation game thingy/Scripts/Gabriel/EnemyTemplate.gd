@@ -21,6 +21,7 @@ var path_Progress = 0
 var angle
 var lookSpeed = 4
 var NavFinished = false
+@onready var progress_bar = $Control/ProgressBar
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_on_partrol_patrol()
@@ -62,7 +63,8 @@ func Shoot():
 
 func Hit(): # On hit by bullet- had to rewrite this because Gabriel didn't github good :(
 	HP -= 10 # Reduces HP by 10 when hit by bullet
-	print(str(HP)) # Prints current HP to console- for ease of debugging
+	progress_bar.visible = true
+	progress_bar.value = HP
 	if HP <= 0: # If the enemy is dead:
 		Follow_Target.Killed_Enemy()
 		queue_free() # Destroy the enemy- may change this to stop it moving once we have dead enemies from Sam

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5ruclose7cbe"]
+[gd_scene load_steps=17 format=3 uid="uid://b5ruclose7cbe"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_hg2kr"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_7vx65"]
@@ -27,6 +27,23 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
 radius = 0.880453
+
+[sub_resource type="SystemFont" id="SystemFont_cxfd7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saush"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f1ok"]
+bg_color = Color(1.10701e-06, 0.719442, 0.343978, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
 light_mask = 3
@@ -66,7 +83,7 @@ wait_time = 0.25
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@49211")
+blackboard = NodePath("@Node@36877")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -90,6 +107,40 @@ metadata/_custom_type_script = "uid://d15gdyd0wt2bp"
 
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator"]
 script = ExtResource("11_saush")
+
+[node name="Control" type="Control" parent="."]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+visible = false
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -7.0
+offset_right = 27.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_cxfd7")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_saush")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1f1ok")
+value = 90.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="VisionEnterd" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_enterd"]

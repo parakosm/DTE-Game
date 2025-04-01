@@ -1,13 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://rjvh1nqqcqaf"]
+[gd_scene load_steps=13 format=4 uid="uid://rjvh1nqqcqaf"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_3y0qb"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_l6jtc"]
-[ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="5_5piik"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_b0hvr"]
-[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="7_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_ye6am"]
-[ext_resource type="PackedScene" uid="uid://u4kq8dc6rjvk" path="res://Scenes/Shotgun Enemy.tscn" id="8_l6jtc"]
+[ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="8_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://cyxktt8n27yq7" path="res://Scenes/Spawner.tscn" id="9_5piik"]
 
 [sub_resource type="Curve2D" id="Curve2D_f66m2"]
@@ -99,33 +97,34 @@ curve = SubResource("Curve2D_l6jtc")
 
 [node name="Enemys" type="Node" parent="."]
 
-[node name="EnemyTemplate5" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("5_5piik")]
+[node name="EnemyTemplate5" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
 position = Vector2(261, 207)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D4")
 
-[node name="EnemyTemplate" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("5_5piik")]
+[node name="EnemyTemplate" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
 position = Vector2(27, 199)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D")
 
-[node name="EnemyTemplate2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("5_5piik")]
+[node name="EnemyTemplate2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
 position = Vector2(596, 80)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D2")
 
-[node name="EnemyTemplate3" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("5_5piik")]
+[node name="EnemyTemplate3" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
 position = Vector2(121, 26)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
 
-[node name="EnemyTemplate6" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("5_5piik")]
+[node name="EnemyTemplate6" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
 position = Vector2(581, 187)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D5")
-
-[node name="EnemyTemplateShotgun" parent="Enemys" node_paths=PackedStringArray("pathName", "Follow_Target") instance=ExtResource("8_l6jtc")]
-position = Vector2(102, 29)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
-Follow_Target = NodePath("../../World/Player")
-Bullet = ExtResource("7_l6jtc")
 
 [node name="Misc" type="Node" parent="."]
 
 [node name="Spawner" parent="Misc" instance=ExtResource("9_5piik")]
-position = Vector2(313, 274)
+position = Vector2(28, 28)
+maxEnemys = 5
+minEnemys = 1
+
+[node name="Spawner2" parent="Misc" instance=ExtResource("9_5piik")]
+position = Vector2(312, 276)
+maxEnemys = 2
+minEnemys = 1
