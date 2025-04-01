@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://v0fu45n3xfte"]
+
+[ext_resource type="Script" uid="uid://b7kjflfbkqh7n" path="res://Scripts/Gabriel/enemy_template_renforcements.gd" id="1_ytysd"]
+[ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_tpjok"]
+[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="3_5c3dn"]
+[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_2gxh4"]
+[ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="9_pwomp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
+light_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5c3dn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
+radius = 0.880453
+
+[node name="EnemyTemplate" type="CharacterBody2D"]
+light_mask = 3
+material = SubResource("CanvasItemMaterial_7vx65")
+motion_mode = 1
+script = ExtResource("1_ytysd")
+
+[node name="VisionCone2D2" parent="." instance=ExtResource("2_tpjok")]
+use_parent_material = true
+rotation = -1.5708
+angle_deg = 60
+ray_count = 25
+max_distance = 200.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(0.117, 0.115)
+sprite_frames = SubResource("SpriteFrames_kq1ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7.95045, 7.68115)
+shape = SubResource("CircleShape2D_yr4x4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+path_postprocessing = 1
+avoidance_enabled = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationAgent2D"]
+vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7, -2, 4, -6)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("4_2gxh4")
+blackboard = NodePath("@Node@21802")
+actor = NodePath("..")
+
+[node name="Follow" type="Node" parent="BeehaveTree"]
+script = ExtResource("9_pwomp")
+
+[connection signal="VisionEnterd" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_enterd"]
+[connection signal="VisionExited" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_exited"]
+[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
+[connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/Follow" method="_on_navigation_agent_2d_path_changed"]
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/Follow" method="_on_navigation_agent_2d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="follow" from="BeehaveTree/Follow" to="." method="_on_follow_follow"]

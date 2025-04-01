@@ -1,34 +1,22 @@
 extends CharacterBody2D
 var can_shoot = true
-var canShoot = true
 var shoot = false
-@export_group("settings")
-@export var pathName: Path2D
-#@export var Follow_Target: CharacterBody2D
 @onready var Follow_Target = $"../../World/Player"
-var Bullet = preload("res://Scenes/bullet.tscn")
+var Bullet = load("res://Scenes/bullet.tscn")
 var HP = 100
 var Target_Position
 var Current_Position
-var Movement_Speed = 25
+var Movement_Speed = 40
 var Next_Step
 var Velocity
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var pathOne = pathName.curve
-@onready var Path_Length = pathOne.get_point_count()
-var lookat = 0
 var path_Progress = 0
 var angle
 var lookSpeed = 4
-var NavFinished = false
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	_on_partrol_patrol()
 
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	Pathfind(delta)
-	NavFinished= false
 
 func Pathfind(delta):
 	Current_Position = self.global_position
@@ -39,15 +27,12 @@ func Pathfind(delta):
 	else:
 		_on_navigation_agent_2d_velocity_computed(Velocity)
 	move_and_slide()
-	if lookat == 0:
-		angle = (Next_Step - self.global_position).angle()
-	elif lookat == 1:
-		angle = (Follow_Target.position - self.global_position).angle()
-		if shoot == true:
-			if can_shoot == true:
-				can_shoot = false
-				Shoot()
-				$CooldownTimer.start()
+	angle = (Follow_Target.position - self.global_position).angle()
+	if shoot == true:
+		if can_shoot == true:
+			can_shoot = false
+			Shoot()
+			$CooldownTimer.start()
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
@@ -56,7 +41,7 @@ func lookAt(angle, delta):
 
 func Shoot():
 		var b = Bullet.instantiate()
-		owner.add_child(b)
+		get_parent().add_child(b)
 		b.transform = $Marker2D.global_transform
 
 
@@ -72,37 +57,22 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 
 
-func _on_partrol_patrol():
-	Target_Position = pathOne.get_point_position(path_Progress)
-	navigation_agent_2d.target_position = Target_Position
-	path_Progress += 1
-	if Path_Length == path_Progress:
-		path_Progress = 0
-	lookat = 0
-	Movement_Speed = 25
-
-
-func _on_vision_cone_2d_2_vision_enterd(body: Node2D) -> void:
-	shoot = true
+func _on_vision_cone_2d_2_vision_enterd(body):
+	if body == Follow_Target:
+		shoot = true
 	
 
-func _on_vision_cone_2d_2_vision_exited(body: Node2D) -> void:
-	lookat = 0
-	shoot = false
+func _on_vision_cone_2d_2_vision_exited(body):
+	if body == Follow_Target:
+		shoot = false
 
 
 func _on_follow_follow():
 	if Target_Position != Follow_Target.position:
 		Target_Position = Follow_Target.position
 		navigation_agent_2d.target_position = Target_Position
-		lookat = 1
 		Movement_Speed = 40
 
 
 func _on_cooldown_timer_timeout():
 	can_shoot = true
-
-
-func _on_navigation_agent_2d_target_reached():
-	await get_tree().create_timer(0.5).timeout
-	NavFinished = true

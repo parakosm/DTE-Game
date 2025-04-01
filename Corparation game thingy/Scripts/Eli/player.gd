@@ -44,3 +44,7 @@ func Hit():
 	print("Health " + str(Health))
 	if Health <= 0:
 		get_tree().change_scene_to_file(str("res://Scenes/Death Screen.tscn"))
+		
+
+func player():
+	pass

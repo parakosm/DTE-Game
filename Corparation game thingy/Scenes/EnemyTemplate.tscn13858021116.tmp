@@ -66,14 +66,11 @@ wait_time = 0.25
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_tc6eq")
-blackboard = NodePath("@Node@21804")
+blackboard = NodePath("@Node@111415")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
 script = ExtResource("3_xo6hj")
-
-[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("10_kn5sd")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("9_1f1ok")
@@ -91,16 +88,17 @@ metadata/_custom_type_script = "uid://d15gdyd0wt2bp"
 [node name="Follow" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator"]
 script = ExtResource("11_saush")
 
+[node name="Partrol" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("10_kn5sd")
+
 [connection signal="VisionEnterd" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_enterd"]
-[connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_enterd"]
-[connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
 [connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_path_changed"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
-[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/Partrol" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
-[connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
+[connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]

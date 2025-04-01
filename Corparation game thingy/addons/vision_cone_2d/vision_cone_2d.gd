@@ -4,6 +4,8 @@ extends Node2D
 class_name VisionCone2D
 signal VisionEnterd(body)
 signal VisionExited(body)
+@export var render = false
+
 @export_group("Raycast parameters")
 ## How wide the vision cone is in degrees
 @export_range(0, 360) var angle_deg = 360
@@ -106,10 +108,13 @@ func _update_collision_polygon():
 	write_collision_polygon.polygon = polygon
 
 func _update_render_polygon():
-	if write_polygon2d == null:
-		return
-	var polygon = PackedVector2Array(_vision_points);
-	write_polygon2d.polygon = polygon
+	if render == false:
+		pass
+	else:
+		if write_polygon2d == null:
+			return
+		var polygon = PackedVector2Array(_vision_points);
+		write_polygon2d.polygon = polygon
 
 func _ray_to(direction: Vector2) -> Vector2:
 	# TODO add offset to origin
@@ -121,9 +126,11 @@ func _ray_to(direction: Vector2) -> Vector2:
 	return to_local(ray_position)
 
 
-func _on_vision_cone_area_body_entered(body):
-	VisionEnterd.emit(body)
+func _on_vision_cone_area_body_entered(body: Node2D):
+	if body.has_method("player"):
+		VisionEnterd.emit(body)
 
 
-func _on_vision_cone_area_body_exited(body):
-	VisionExited.emit(body)
+func _on_vision_cone_area_body_exited(body: Node2D):
+	if body.has_method("player"):
+		VisionExited.emit(body)

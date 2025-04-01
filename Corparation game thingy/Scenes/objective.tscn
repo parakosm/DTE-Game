@@ -1,25 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5nk617adfc73"]
+[gd_scene load_steps=12 format=3 uid="uid://c5nk617adfc73"]
 
 [ext_resource type="Script" uid="uid://dypuyq7uyr4rp" path="res://Scripts/Eli/objective.gd" id="1_agiu3"]
-[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="1_dq3p1"]
+[ext_resource type="Texture2D" uid="uid://bqx0pw6ha0lw7" path="res://Assets/tiles and objects/Keycard.png" id="2_agiu3"]
+[ext_resource type="Script" uid="uid://b4h7m0c455xmh" path="res://Scripts/Gabriel/Keycard scripts/Keycard 1.gd" id="3_5862k"]
+[ext_resource type="Script" uid="uid://dlxvum2fdamul" path="res://Scripts/Gabriel/Keycard scripts/Keycard 2.gd" id="4_4xiiw"]
+[ext_resource type="Script" uid="uid://bial8320xbak2" path="res://Scripts/Gabriel/Keycard scripts/Keycard 3.gd" id="5_cj2xb"]
+[ext_resource type="Script" uid="uid://brbsn5noh2lum" path="res://Scripts/Gabriel/Keycard scripts/Keycard 4.gd" id="6_1cdcc"]
+[ext_resource type="Script" uid="uid://detlqjtaag3cs" path="res://Scripts/Gabriel/Keycard scripts/Keycard 5.gd" id="7_f8l8w"]
+[ext_resource type="Script" uid="uid://c42buu6js4v6y" path="res://Scripts/Gabriel/Keycard scripts/Keycard 6.gd" id="8_gh68t"]
+[ext_resource type="Script" uid="uid://cyvbgdr2kgbte" path="res://Scripts/Gabriel/Keycard scripts/Keycard 7.gd" id="9_110un"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1tc8"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agiu3"]
 radius = 3.0
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_agiu3"]
-light_mode = 2
-
 [node name="Objective" type="Area2D"]
+material = SubResource("CanvasItemMaterial_l1tc8")
 script = ExtResource("1_agiu3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_agiu3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_agiu3")
+[node name="1" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
 position = Vector2(-2.38419e-07, 0)
-rotation = 1.5708
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_dq3p1")
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 2, 9, 5)
+script = ExtResource("3_5862k")
+
+[node name="2" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 8, 9, 5)
+script = ExtResource("4_4xiiw")
+
+[node name="3" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 14, 9, 5)
+script = ExtResource("5_cj2xb")
+
+[node name="4" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 20, 9, 5)
+script = ExtResource("6_1cdcc")
+
+[node name="5" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 26, 9, 5)
+script = ExtResource("7_f8l8w")
+
+[node name="6" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 32, 9, 5)
+script = ExtResource("8_gh68t")
+
+[node name="7" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+texture = ExtResource("2_agiu3")
+region_enabled = true
+region_rect = Rect2(2, 38, 9, 5)
+script = ExtResource("9_110un")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="visibleKeyCard" from="." to="1" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="2" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="3" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="4" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="5" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="6" method="_on_objective_visible_key_card"]
+[connection signal="visibleKeyCard" from="." to="7" method="_on_objective_visible_key_card"]
