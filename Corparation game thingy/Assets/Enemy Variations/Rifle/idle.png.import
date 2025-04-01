@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctkplk4tm0735"
-path="res://.godot/imported/enemy w sniper.png-033f5e1d565f188c6f4ce224f8c2eb34.ctex"
+uid="uid://vpj862vrya5"
+path="res://.godot/imported/idle.png-600cf37d0315940051203d7126789f6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemy Variations/enemy w sniper.png"
-dest_files=["res://.godot/imported/enemy w sniper.png-033f5e1d565f188c6f4ce224f8c2eb34.ctex"]
+source_file="res://Assets/Enemy Variations/Rifle/idle.png"
+dest_files=["res://.godot/imported/idle.png-600cf37d0315940051203d7126789f6c.ctex"]
 
 [params]
 

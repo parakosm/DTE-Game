@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3p7e6sf7kmx"
-path="res://.godot/imported/enemy standard.png-7d0be7421be9c7f3b8629a0d144f82c7.ctex"
+uid="uid://b2x03uygdnth7"
+path="res://.godot/imported/Idle.png-731ed1495b990d241a4c6ff5384a487c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemy Variations/enemy standard.png"
-dest_files=["res://.godot/imported/enemy standard.png-7d0be7421be9c7f3b8629a0d144f82c7.ctex"]
+source_file="res://Assets/Enemy Variations/Shotgun/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-731ed1495b990d241a4c6ff5384a487c.ctex"]
 
 [params]
 
