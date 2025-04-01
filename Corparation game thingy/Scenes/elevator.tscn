@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://yrijsp1ct8vi"]
+[gd_scene load_steps=5 format=3 uid="uid://yrijsp1ct8vi"]
 
 [ext_resource type="Texture2D" uid="uid://btl2swmdxddy8" path="res://Assets/elevator.png" id="1_7i85y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="2_jd6vs"]
 [ext_resource type="Script" uid="uid://djntut11d1b4" path="res://Scripts/Eli/movebutton.gd" id="3_jd6vs"]
+[ext_resource type="Script" uid="uid://cot42cdvn5pfl" path="res://Scripts/Gabriel/ButtonScripts/save_button.gd" id="4_1gjip"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,4 +22,14 @@ offset_bottom = 351.0
 icon = ExtResource("2_jd6vs")
 script = ExtResource("3_jd6vs")
 
+[node name="SaveButton" type="Button" parent="."]
+offset_left = -555.0
+offset_top = 225.0
+offset_right = -313.0
+offset_bottom = 343.0
+theme_override_font_sizes/font_size = 80
+text = "Save"
+script = ExtResource("4_1gjip")
+
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="SaveButton" to="SaveButton" method="_on_pressed"]
