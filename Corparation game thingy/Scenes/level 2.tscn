@@ -76,7 +76,6 @@ keyType = 2
 [node name="Player" parent="World" instance=ExtResource("4_l6jtc")]
 position = Vector2(52, 10)
 rotation = 2.22181
-speed = 50
 TilesRight = 40
 TilesDown = 19
 

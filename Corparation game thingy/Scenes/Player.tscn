@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=7 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
-[ext_resource type="PackedScene" uid="uid://clr34anfqldsc" path="res://Scenes/bullet.tscn" id="2_gntrk"]
 [ext_resource type="Texture2D" uid="uid://darqs0y7nosm3" path="res://Assets/player/Player.png" id="3_dewec"]
 [ext_resource type="Texture2D" uid="uid://breaqwbhb3bqr" path="res://Assets/pixil-frame-0.png" id="4_dewec"]
 
@@ -16,7 +15,9 @@ light_mode = 2
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_2qvnv")
-Bullet = ExtResource("2_gntrk")
+
+[node name="TimeRemainig" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -59,10 +60,27 @@ limit_smoothed = true
 
 [node name="Control" type="Control" parent="Camera2D/CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="Camera2D/CanvasLayer/Control"]
+[node name="Timer" type="Label" parent="Camera2D/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.5
+offset_right = 107.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Time Remaning: 60 Seconds"
+
+[node name="XP" type="Label" parent="Camera2D/CanvasLayer/Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "YES"
+
+[connection signal="timeout" from="TimeRemainig" to="." method="_on_time_remainig_timeout"]
