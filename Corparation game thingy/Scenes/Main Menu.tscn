@@ -1,3 +1,32 @@
-[gd_scene format=3 uid="uid://dfl5qxttbb7eq"]
+[gd_scene load_steps=4 format=3 uid="uid://dfl5qxttbb7eq"]
 
-[node name="MainMenu" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://5i7so1swsd3b" path="res://Assets/image.png" id="1_totuj"]
+[ext_resource type="Script" uid="uid://drmf1m8mc0f1u" path="res://Scripts/Gabriel/MainMenuScripts/startButton.gd" id="2_hcxxy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_totuj"]
+texture = ExtResource("1_totuj")
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_totuj")
+
+[node name="startButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 115.0
+offset_right = 596.0
+offset_bottom = 218.0
+script = ExtResource("2_hcxxy")
+
+[connection signal="pressed" from="startButton" to="startButton" method="_on_pressed"]
