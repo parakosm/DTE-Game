@@ -25,7 +25,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
-radius = 0.880453
+radius = 7.07107
 
 [sub_resource type="SystemFont" id="SystemFont_ytysd"]
 subpixel_positioning = 0
@@ -45,7 +45,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[node name="EnemyTemplate" type="CharacterBody2D"]
+[node name="Shotgun Enemy Renforcements" type="CharacterBody2D"]
 light_mask = 3
 material = SubResource("CanvasItemMaterial_7vx65")
 motion_mode = 1
@@ -67,7 +67,6 @@ sprite_frames = SubResource("SpriteFrames_esv1c")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(7.95045, 7.68115)
 shape = SubResource("CircleShape2D_yr4x4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -76,7 +75,7 @@ path_postprocessing = 1
 avoidance_enabled = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationAgent2D"]
-vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7, -2, 4, -6)
+radius = 7.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(10, 0)
@@ -86,7 +85,7 @@ wait_time = 0.25
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_doxfm")
-blackboard = NodePath("@Node@23123")
+blackboard = NodePath("@Node@81439")
 actor = NodePath("..")
 
 [node name="Follow" type="Node" parent="BeehaveTree"]

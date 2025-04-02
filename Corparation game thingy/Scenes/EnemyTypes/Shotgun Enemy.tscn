@@ -30,7 +30,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
-radius = 0.880453
+radius = 7.0
 
 [sub_resource type="SystemFont" id="SystemFont_cxfd7"]
 subpixel_positioning = 0
@@ -72,7 +72,6 @@ sprite_frames = SubResource("SpriteFrames_kq1ep")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(7.95045, 7.68115)
 shape = SubResource("CircleShape2D_yr4x4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -81,7 +80,7 @@ path_postprocessing = 1
 avoidance_enabled = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationAgent2D"]
-vertices = PackedVector2Array(0, -7, -4, -6, -7, -1, -6, 3, -2, 7, 3, 6, 6, 3, 7, -2, 4, -6)
+radius = 7.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(10, 0)
@@ -91,7 +90,7 @@ wait_time = 0.75
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_r3l2h")
-blackboard = NodePath("@Node@23393")
+blackboard = NodePath("@Node@77602")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
