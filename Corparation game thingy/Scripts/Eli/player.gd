@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var Bullet = preload("res://Scenes/bullet.tscn")
+var Bullet = preload("res://Scenes/bullet FOR PLAYER.tscn")
 @onready var camera_2d = $Camera2D
 
-var XP = Global.Experience
+@onready var XP = Global.Experience
 var Health = Global.PlayerHealth
 
 var speed = 42 # Nobody change this variable
@@ -21,6 +21,7 @@ func _ready():
 	camera_2d.limit_bottom = TilesDown*16
 	time_remainig.wait_time = LevelTime
 	time_remainig.start()
+	xp.text = str("XP: ", XP)
 	print("started")
 
 func get_input():
@@ -49,6 +50,7 @@ func shoot():
 func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
 	XP += 10
 	xp.text = str("XP: ", XP)
+	Global.Experience = XP
 	
 func Hit():
 	Health -= 10

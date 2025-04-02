@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://rjvh1nqqcqaf"]
+[gd_scene load_steps=14 format=4 uid="uid://rjvh1nqqcqaf"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_3y0qb"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_l6jtc"]
-[ext_resource type="PackedScene" uid="uid://dsa86bdhkgsv1" path="res://Scenes/EnemyTypes/Machine Gun Enemy.tscn" id="6_5piik"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_ye6am"]
 [ext_resource type="PackedScene" uid="uid://40egq1pg1asa" path="res://Scenes/EnemyTypes/Shotgun Enemy.tscn" id="8_5piik"]
@@ -74,7 +73,7 @@ position = Vector2(391, 103)
 keyType = 2
 
 [node name="Player" parent="World" instance=ExtResource("4_l6jtc")]
-position = Vector2(485, 266)
+position = Vector2(52, 11)
 rotation = 2.22181
 TilesRight = 40
 TilesDown = 19
@@ -120,12 +119,8 @@ position = Vector2(581, 187)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D5")
 
 [node name="Shotgun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_5piik")]
-position = Vector2(431, 283)
+position = Vector2(112, 46)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
-
-[node name="Machine Gun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("6_5piik")]
-position = Vector2(411, 263)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D")
 
 [node name="Misc" type="Node" parent="."]
 
