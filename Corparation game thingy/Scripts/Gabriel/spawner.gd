@@ -16,17 +16,14 @@ func _physics_process(delta):
 			for I in range(rng.randf_range(minEnemys, maxEnemys)):# spawns the enmy renforcements 
 				var selected = rng.randf_range(1, 2)
 				selected = roundf(selected)
-				print(selected)
 				if selected == 1:
 					var instance = MACHINE_GUN_ENEMY_RENFORCEMENTS.instantiate()
 					instance.global_position = self.global_position
 					add_sibling(instance)
-					print("wut")
 				if selected == 2:
 					var instance = SHOTGUN_ENEMY_RENFORCEMENTS.instantiate()
 					instance.global_position = self.global_position
 					add_sibling(instance)
-				print("somthing not good")
 				await get_tree().create_timer(0.5).timeout# adds a delay between spawning to decrese lag
 
 

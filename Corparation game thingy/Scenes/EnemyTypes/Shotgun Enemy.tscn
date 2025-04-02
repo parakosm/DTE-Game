@@ -59,9 +59,9 @@ script = ExtResource("1_bvkeb")
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_gns2v")]
 use_parent_material = true
 rotation = -1.5708
-angle_deg = 60
+angle_deg = 40
 ray_count = 25
-max_distance = 200.0
+max_distance = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -102,7 +102,7 @@ script = ExtResource("6_ogk43")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("7_wiv8c")
-wait_time = 1.0
+wait_time = 2.0
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]

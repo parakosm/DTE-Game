@@ -22,7 +22,6 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 
 func _on_navigation_agent_2d_target_reached():
 	Partroling = false
-	return SUCCESS
 
 
 func _on_vision_cone_2d_2_vision_enterd(body):

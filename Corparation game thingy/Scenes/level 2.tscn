@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_b0hvr"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="4_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_b0hvr"]
+[ext_resource type="PackedScene" uid="uid://dsa86bdhkgsv1" path="res://Scenes/EnemyTypes/Machine Gun Enemy.tscn" id="7_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_ye6am"]
 [ext_resource type="PackedScene" uid="uid://40egq1pg1asa" path="res://Scenes/EnemyTypes/Shotgun Enemy.tscn" id="8_5piik"]
-[ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="8_l6jtc"]
 [ext_resource type="PackedScene" uid="uid://cyxktt8n27yq7" path="res://Scenes/Spawner.tscn" id="9_5piik"]
 
 [sub_resource type="Curve2D" id="Curve2D_f66m2"]
@@ -69,11 +69,11 @@ tile_set = ExtResource("1_3y0qb")
 position = Vector2(312, 273)
 
 [node name="Objective" parent="World" instance=ExtResource("7_ye6am")]
-position = Vector2(391, 103)
+position = Vector2(21, 32)
 keyType = 2
 
 [node name="Player" parent="World" instance=ExtResource("4_l6jtc")]
-position = Vector2(52, 11)
+position = Vector2(308, 291)
 rotation = 2.22181
 TilesRight = 40
 TilesDown = 19
@@ -98,39 +98,38 @@ curve = SubResource("Curve2D_l6jtc")
 
 [node name="Enemys" type="Node" parent="."]
 
-[node name="EnemyTemplate5" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
-position = Vector2(261, 207)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D4")
-
-[node name="EnemyTemplate" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
-position = Vector2(27, 199)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D")
-
-[node name="EnemyTemplate2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
-position = Vector2(596, 80)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D2")
-
-[node name="EnemyTemplate3" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
-position = Vector2(121, 26)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
-
-[node name="EnemyTemplate6" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_l6jtc")]
-position = Vector2(581, 187)
-pathName = NodePath("../../EnemyPatroalPaths/Path2D5")
-
 [node name="Shotgun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_5piik")]
 position = Vector2(112, 46)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
+
+[node name="Shotgun Enemy2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_5piik")]
+position = Vector2(263, 214)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D4")
+
+[node name="Machine Gun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("7_l6jtc")]
+position = Vector2(37, 204)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D")
+
+[node name="Machine Gun Enemy2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("7_l6jtc")]
+position = Vector2(585, 192)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D5")
+
+[node name="Shotgun Enemy3" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_5piik")]
+position = Vector2(593, 81)
+pathName = NodePath("../../EnemyPatroalPaths/Path2D2")
+
+[node name="Shotgun Enemy4" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("8_5piik")]
+position = Vector2(109, 29)
 pathName = NodePath("../../EnemyPatroalPaths/Path2D3")
 
 [node name="Misc" type="Node" parent="."]
 
 [node name="Spawner" parent="Misc" instance=ExtResource("9_5piik")]
-visible = false
-position = Vector2(28, 28)
-maxEnemys = 5
+position = Vector2(622, 30)
+maxEnemys = 2
 minEnemys = 1
 
 [node name="Spawner2" parent="Misc" instance=ExtResource("9_5piik")]
-position = Vector2(312, 276)
+position = Vector2(35, 30)
 maxEnemys = 2
 minEnemys = 1

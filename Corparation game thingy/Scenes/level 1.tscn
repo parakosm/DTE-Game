@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0jtwkmgqomhx"]
+[gd_scene load_steps=12 format=4 uid="uid://d0jtwkmgqomhx"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_o30o5"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_rwcms"]
 [ext_resource type="PackedScene" uid="uid://cpcafahb7ebw4" path="res://Scenes/Player.tscn" id="3_a2n4b"]
-[ext_resource type="PackedScene" uid="uid://b5ruclose7cbe" path="res://Scenes/EnemyTemplate.tscn" id="4_6jqpp"]
 [ext_resource type="PackedScene" uid="uid://cyxktt8n27yq7" path="res://Scenes/Spawner.tscn" id="6_4ff0u"]
+[ext_resource type="PackedScene" uid="uid://dsa86bdhkgsv1" path="res://Scenes/EnemyTypes/Machine Gun Enemy.tscn" id="6_ayjtp"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_bex1k"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_4ff0u"]
+[ext_resource type="PackedScene" uid="uid://40egq1pg1asa" path="res://Scenes/EnemyTypes/Shotgun Enemy.tscn" id="7_q08mx"]
 
 [sub_resource type="Curve2D" id="Curve2D_bex1k"]
 _data = {
@@ -77,16 +78,16 @@ curve = SubResource("Curve2D_auim0")
 
 [node name="Enemys" type="Node" parent="."]
 
-[node name="1" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("4_6jqpp")]
-position = Vector2(166, 85)
+[node name="Machine Gun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("6_ayjtp")]
+position = Vector2(160, 87)
 pathName = NodePath("../../EnemyPatroalPaths/1")
 
-[node name="2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("4_6jqpp")]
-position = Vector2(27, 181)
+[node name="Shotgun Enemy" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("7_q08mx")]
+position = Vector2(38, 183)
 pathName = NodePath("../../EnemyPatroalPaths/2")
 
-[node name="3" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("4_6jqpp")]
-position = Vector2(427, 180)
+[node name="Shotgun Enemy2" parent="Enemys" node_paths=PackedStringArray("pathName") instance=ExtResource("7_q08mx")]
+position = Vector2(438, 181)
 pathName = NodePath("../../EnemyPatroalPaths/3")
 
 [node name="Misc" type="Node" parent="."]
