@@ -61,7 +61,7 @@ use_parent_material = true
 rotation = -1.5708
 angle_deg = 40
 ray_count = 25
-max_distance = 100.0
+max_distance = 125.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -154,6 +154,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_exited"]
+[connection signal="VisionExited" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_exited"]
+[connection signal="VisionExited" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_vision_cone_2d_2_vision_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
 [connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_path_changed"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]

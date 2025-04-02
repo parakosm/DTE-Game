@@ -12,6 +12,7 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if Global.Spotted == true:
 		return FAILURE
 	elif stop == true:
+		print(stop)
 		return FAILURE
 	elif Partroling == true:
 		return RUNNING
@@ -27,3 +28,9 @@ func _on_navigation_agent_2d_target_reached():
 func _on_vision_cone_2d_2_vision_enterd(body):
 	stop = true
 	return FAILURE
+
+
+func _on_vision_cone_2d_2_vision_exited(body):
+	stop = false
+	print(stop, " what")
+	return RUNNING

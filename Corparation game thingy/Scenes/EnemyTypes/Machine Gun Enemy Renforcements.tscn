@@ -54,9 +54,9 @@ script = ExtResource("1_gx8ks")
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_i6ud5")]
 use_parent_material = true
 rotation = -1.5708
-angle_deg = 60
+angle_deg = 40
 ray_count = 25
-max_distance = 200.0
+max_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -86,7 +86,7 @@ wait_time = 0.1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_pxruu")
-blackboard = NodePath("@Node@116750")
+blackboard = NodePath("@Node@58667")
 actor = NodePath("..")
 
 [node name="Follow" type="Node" parent="BeehaveTree"]

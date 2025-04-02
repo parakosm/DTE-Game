@@ -110,3 +110,7 @@ func _on_follow_follow():
 func _on_cooldown_timer_timeout():
 	# gun cooldown
 	can_shoot = true
+
+
+func _on_follow_patrol():
+	pass # Replace with function body.

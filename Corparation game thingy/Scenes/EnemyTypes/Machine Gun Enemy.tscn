@@ -59,9 +59,9 @@ script = ExtResource("1_s2ojq")
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_5gtgv")]
 use_parent_material = true
 rotation = -1.5708
-angle_deg = 60
+angle_deg = 40
 ray_count = 25
-max_distance = 200.0
+max_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -153,6 +153,8 @@ metadata/_edit_use_anchors_ = true
 [connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionEnterd" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_exited"]
+[connection signal="VisionExited" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/Partrol" method="_on_vision_cone_2d_2_vision_exited"]
+[connection signal="VisionExited" from="VisionCone2D2" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_vision_cone_2d_2_vision_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
 [connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" method="_on_navigation_agent_2d_path_changed"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
@@ -161,4 +163,5 @@ metadata/_edit_use_anchors_ = true
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="Patrol" from="BeehaveTree/SelectorComposite/Partrol" to="." method="_on_partrol_patrol"]
+[connection signal="Patrol" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_patrol"]
 [connection signal="follow" from="BeehaveTree/SelectorComposite/DelayDecorator/InverterDecorator/UntilFailDecorator/Follow" to="." method="_on_follow_follow"]
