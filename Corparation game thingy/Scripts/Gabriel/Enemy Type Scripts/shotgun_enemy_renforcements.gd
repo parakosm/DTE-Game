@@ -46,7 +46,7 @@ func lookAt(angle, delta):
 func Shoot():
 		for i in range(0, 10):# spawns more bullets at once
 			var b = Bullet.instantiate()
-			owner.add_child(b)#spawn a bullet at marker
+			add_sibling(b)#spawn a bullet at marker
 			b.transform = $Marker2D.global_transform
 			b.global_rotation = $Marker2D.global_rotation + rng.randf_range(-0.5,0.5)# changes bulet dirction a bit to give more spread
 
