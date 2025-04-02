@@ -37,7 +37,9 @@ func Pathfind(delta):
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
-	self.global_rotation = lerp_angle(self.global_rotation, angle, delta * lookSpeed)
+	angle = lerp_angle(self.global_rotation, angle, delta * lookSpeed)
+	$Control.rotation =- angle
+	self.global_rotation = angle
 
 
 func Shoot():

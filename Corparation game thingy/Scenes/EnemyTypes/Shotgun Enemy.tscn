@@ -91,7 +91,7 @@ wait_time = 0.75
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_r3l2h")
-blackboard = NodePath("@Node@112759")
+blackboard = NodePath("@Node@138715")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
