@@ -17,12 +17,13 @@ var speed = 42 # Nobody change this variable
 @onready var health = $Camera2D/CanvasLayer/Control/Health
 
 func _ready():
+	# loads in the camra limits and defolt xp values
+	# camra limiting stops camra from seaing outside the map
 	camera_2d.limit_right = TilesRight*16
 	camera_2d.limit_bottom = TilesDown*16
 	time_remainig.wait_time = LevelTime
 	time_remainig.start()
 	xp.text = str("XP: ", XP)
-	print("started")
 
 func get_input():
 	if Input.is_action_pressed("shift"): # If the shift key is held down, the player speed is increased. Otherwise, the else sets speed to the normal value.
@@ -52,14 +53,14 @@ func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the con
 	xp.text = str("XP: ", XP)
 	Global.Experience = XP
 	
-func Hit():
+func Hit():# lowers hp when hit
 	Health -= 10
-	health.text = str("HP: ", Health)
+	health.text = str("HP: ", Health)# sets the ui to the corect values
 	if Health <= 0:
 		get_tree().change_scene_to_file(str("res://Scenes/Death Screen.tscn"))
 		
 
-func player():
+func player():# used so other scrpits knows this is the player
 	pass
 
 

@@ -7,17 +7,17 @@ var cooldown = false
 @export var minEnemys = 5
 
 func _physics_process(delta):
-	if Global.Spotted == true:
-		if cooldown == false:
+	if Global.Spotted == true: # if player spotted itll start renforceing 
+		if cooldown == false:# renforces every x seconds
 			$Timer.start()
 			cooldown = true
-			for I in range(rng.randf_range(minEnemys, maxEnemys)):
+			for I in range(rng.randf_range(minEnemys, maxEnemys)):# spawns the enmy renforcements 
 				var selected = rng.randf_range(1, 1)
 				if selected == 1:
 					var instance = ENEMY_TEMPLATE_RENFORCEMENTS.instantiate()
 					instance.global_position = self.global_position
 					add_sibling(instance)
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5).timeout# adds a delay between spawning to decrese lag
 
 
 func _on_timer_timeout():

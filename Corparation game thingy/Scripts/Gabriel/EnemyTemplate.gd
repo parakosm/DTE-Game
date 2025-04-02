@@ -20,18 +20,17 @@ var lookat = 0
 var path_Progress = 0
 var angle
 var lookSpeed = 4
-var NavFinished = false
 @onready var progress_bar = $Control/ProgressBar
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_on_partrol_patrol()
+	_on_partrol_patrol()# starts partoling
 
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	Pathfind(delta)
-	NavFinished= false
+	Pathfind(delta)# will conpute the pathfinding to keep the enemys moving
 
 func Pathfind(delta):
+	#moves the enemy closer to the next pathfind point
 	Current_Position = self.global_position
 	Next_Step = navigation_agent_2d.get_next_path_position()
 	Velocity = Current_Position.direction_to(Next_Step) * Movement_Speed
@@ -41,29 +40,32 @@ func Pathfind(delta):
 		_on_navigation_agent_2d_velocity_computed(Velocity)
 	move_and_slide()
 	if lookat == 0:
+		#looks at where its going
 		angle = (Next_Step - self.global_position).angle()
 	elif lookat == 1:
+		#looks at player
 		angle = (Follow_Target.position - self.global_position).angle()
-		if shoot == true:
-			if can_shoot == true:
-				can_shoot = false
-				Shoot()
-				$CooldownTimer.start()
+		if shoot == true and can_shoot == true:
+			# shoots player if its gun isnt still cooling down and if its in range
+			can_shoot = false
+			Shoot()
+			$CooldownTimer.start()
 	lookAt(angle, delta)
 
 func lookAt(angle, delta):
 	angle = lerp_angle(self.global_rotation, angle, delta * lookSpeed)
-	$Control.rotation =- angle
-	self.global_rotation = angle
+	$Control.rotation =- angle# resets ui rotation to 0
+	self.global_rotation = angle# sets the enemys rotaton
 
 
 func Shoot():
+		#spawn a bullet at marker
 		var b = Bullet.instantiate()
 		owner.add_child(b)
 		b.transform = $Marker2D.global_transform
 
 
-func Hit(): # On hit by bullet- had to rewrite this because Gabriel didn't github good :(
+func Hit(): # On hit by bullet
 	HP -= 10 # Reduces HP by 10 when hit by bullet
 	progress_bar.visible = true
 	progress_bar.value = HP
@@ -77,6 +79,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 
 func _on_partrol_patrol():
+	# if patroaling this will get the next patrol point acording to BeeHave and path2D
 	Target_Position = pathOne.get_point_position(path_Progress)
 	navigation_agent_2d.target_position = Target_Position
 	path_Progress += 1
@@ -87,15 +90,16 @@ func _on_partrol_patrol():
 
 
 func _on_vision_cone_2d_2_vision_enterd(body: Node2D) -> void:
-	shoot = true
+	shoot = true # player in view cone
 	
 
 func _on_vision_cone_2d_2_vision_exited(body: Node2D) -> void:
 	lookat = 0
-	shoot = false
+	shoot = false# player not in vewcone
 
 
 func _on_follow_follow():
+	# will set pathfind desination to player
 	if Target_Position != Follow_Target.position:
 		Target_Position = Follow_Target.position
 		navigation_agent_2d.target_position = Target_Position
@@ -104,9 +108,5 @@ func _on_follow_follow():
 
 
 func _on_cooldown_timer_timeout():
+	# gun cooldown
 	can_shoot = true
-
-
-func _on_navigation_agent_2d_target_reached():
-	await get_tree().create_timer(0.5).timeout
-	NavFinished = true

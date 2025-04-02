@@ -2,7 +2,8 @@ extends TileMapLayer
 @onready var walls = $"../Walls"
 @onready var objects = $"../Objects"
 
-
+#This script removes the nav layers from floor tiles when the walls or objects are there
+#the purpose of this is so enemys dont try to go through walls but can still walk in big open rooms
 func _use_tile_data_runtime_update(coords):
 	if coords in walls.get_used_cells_by_id(0) or coords in objects.get_used_cells_by_id(1):
 		return true
