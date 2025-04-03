@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://yrijsp1ct8vi"]
 
-[ext_resource type="Texture2D" uid="uid://btl2swmdxddy8" path="res://Assets/elevator.png" id="1_7i85y"]
+[ext_resource type="Texture2D" uid="uid://bqh3u85i8onab" path="res://Assets/tiles and objects/elevator.png" id="1_7i85y"]
 [ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="2_jd6vs"]
 [ext_resource type="Script" uid="uid://djntut11d1b4" path="res://Scripts/Eli/movebutton.gd" id="3_jd6vs"]
 [ext_resource type="Script" uid="uid://cot42cdvn5pfl" path="res://Scripts/Gabriel/ButtonScripts/save_button.gd" id="4_1gjip"]
