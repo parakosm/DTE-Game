@@ -1,13 +1,43 @@
-[gd_scene load_steps=0 format=3 uid="uid://b4qxr786sl2is"]
+[gd_scene load_steps=5 format=3 uid="uid://b4qxr786sl2is"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://cciou5xpuik00" path="res://Assets/screens/Death screen.png" id="1_es1td"]
+[ext_resource type="Script" uid="uid://b5rstswl7rihq" path="res://Scripts/Gabriel/ButtonScripts/restart.gd" id="1_khcxg"]
+[ext_resource type="Script" uid="uid://77tqoastpx7x" path="res://Scripts/Gabriel/ButtonScripts/Main Menu.gd" id="2_ojetv"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5rg2v"]
+texture = ExtResource("1_es1td")
 
-[node name="Label" type="Label" parent="Camera2D"]
-offset_left = 350.0
-offset_top = 241.0
-offset_right = 390.0
-offset_bottom = 264.0
-text = "ur dead homie
-mb :("
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5rg2v")
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 576.0
+offset_right = 725.0
+offset_bottom = 641.0
+script = ExtResource("1_khcxg")
+
+[node name="Main Menu" type="Button" parent="."]
+offset_left = 131.0
+offset_top = 572.0
+offset_right = 416.0
+offset_bottom = 647.0
+text = "Main Menu"
+script = ExtResource("2_ojetv")
+
+[connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]
+[connection signal="pressed" from="Main Menu" to="Main Menu" method="_on_pressed"]
