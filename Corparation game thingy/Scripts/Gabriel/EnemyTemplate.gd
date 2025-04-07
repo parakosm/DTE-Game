@@ -20,6 +20,7 @@ var lookat = 0
 var path_Progress = 0
 var angle
 var lookSpeed = 4
+var AN = false
 @onready var progress_bar = $Control/ProgressBar
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +43,7 @@ func Pathfind(delta):
 	if lookat == 0:
 		#looks at where its going
 		angle = (Next_Step - self.global_position).angle()
+		$AnimatedSprite2D.play("Idle")
 	elif lookat == 1:
 		#looks at player
 		angle = (Follow_Target.position - self.global_position).angle()
@@ -63,7 +65,7 @@ func Shoot():
 		var b = Bullet.instantiate()
 		owner.add_child(b)
 		b.transform = $Marker2D.global_transform
-
+		$AnimatedSprite2D.play("ShootAN")
 
 func Hit(): # On hit by bullet
 	HP -= 10 # Reduces HP by 10 when hit by bullet

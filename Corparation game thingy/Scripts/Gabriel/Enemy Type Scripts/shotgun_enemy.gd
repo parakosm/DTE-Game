@@ -61,6 +61,7 @@ func lookAt(angle, delta):
 
 
 func Shoot():
+		$AnimatedSprite2D.play("ShootAN")
 		for i in range(0, 10):# spawns more bullets at once
 			var b = Bullet.instantiate()
 			owner.add_child(b)#spawn a bullet at marker

@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsa86bdhkgsv1"]
+[gd_scene load_steps=24 format=3 uid="uid://dsa86bdhkgsv1"]
 
 [ext_resource type="Script" uid="uid://ce3hdy3t6qg6i" path="res://Scripts/Gabriel/EnemyTemplate.gd" id="1_s2ojq"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_5gtgv"]
 [ext_resource type="Texture2D" uid="uid://vpj862vrya5" path="res://Assets/Enemy Variations/Rifle/idle.png" id="3_dwxim"]
 [ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_a5yrq"]
+[ext_resource type="Texture2D" uid="uid://cufbw8bm2r1is" path="res://Assets/Enemy Variations/Rifle/Shooting.png" id="4_axiwd"]
 [ext_resource type="Script" uid="uid://bi34rfldfcfmc" path="res://addons/beehave/nodes/composites/selector.gd" id="5_x16i6"]
 [ext_resource type="Script" uid="uid://dpgwtliccje3g" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/partrol.gd" id="6_piuup"]
 [ext_resource type="Script" uid="uid://kw5jur2q22cq" path="res://addons/beehave/nodes/decorators/delayer.gd" id="7_cq4gb"]
@@ -18,6 +19,26 @@ light_mode = 2
 atlas = ExtResource("3_dwxim")
 region = Rect2(0, 0, 23, 38)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fx6s"]
+atlas = ExtResource("4_axiwd")
+region = Rect2(0, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khqmq"]
+atlas = ExtResource("4_axiwd")
+region = Rect2(23, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0n1"]
+atlas = ExtResource("4_axiwd")
+region = Rect2(46, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rskdu"]
+atlas = ExtResource("4_axiwd")
+region = Rect2(69, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dkwp"]
+atlas = ExtResource("4_axiwd")
+region = Rect2(92, 0, 23, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kq1ep"]
 animations = [{
 "frames": [{
@@ -27,6 +48,26 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fx6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khqmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rskdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dkwp")
+}],
+"loop": true,
+"name": &"ShootAN",
+"speed": 24.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
@@ -64,11 +105,12 @@ ray_count = 25
 max_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-use_parent_material = true
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_kq1ep")
-animation = &"Idle"
+animation = &"ShootAN"
+autoplay = "Idle"
+frame_progress = 0.335844
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yr4x4")
@@ -89,7 +131,7 @@ wait_time = 0.1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_a5yrq")
-blackboard = NodePath("@Node@77616")
+blackboard = NodePath("@Node@22491")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
