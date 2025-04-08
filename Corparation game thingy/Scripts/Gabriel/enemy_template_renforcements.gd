@@ -46,6 +46,7 @@ func Shoot():
 		var b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.transform = $Marker2D.global_transform
+		$AnimatedSprite2D.play("ShootAN")
 
 
 func Hit(): # On hit by bullet
@@ -70,6 +71,7 @@ func _on_vision_cone_2d_2_vision_exited(body):
 	# player not in vewcone
 	if body == Follow_Target:
 		shoot = false
+		$AnimatedSprite2D.play("Idle")
 
 
 func _on_follow_follow():

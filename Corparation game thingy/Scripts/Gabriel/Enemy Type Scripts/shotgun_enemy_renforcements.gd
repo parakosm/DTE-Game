@@ -72,6 +72,7 @@ func _on_vision_cone_2d_2_vision_enterd(body):# player in view cone
 func _on_vision_cone_2d_2_vision_exited(body):# player not in vewcone
 	if body == Follow_Target:
 		shoot = false
+		$AnimatedSprite2D.play("Idle")
 
 
 func _on_follow_follow():# will set pathfind desination to player

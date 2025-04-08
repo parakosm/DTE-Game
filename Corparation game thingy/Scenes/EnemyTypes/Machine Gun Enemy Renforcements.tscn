@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cu2lqojajp4xv"]
+[gd_scene load_steps=19 format=3 uid="uid://dgthtsdfpof24"]
 
 [ext_resource type="Script" uid="uid://b7kjflfbkqh7n" path="res://Scripts/Gabriel/enemy_template_renforcements.gd" id="1_gx8ks"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_i6ud5"]
 [ext_resource type="Texture2D" uid="uid://vpj862vrya5" path="res://Assets/Enemy Variations/Rifle/idle.png" id="3_05ne3"]
 [ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_pxruu"]
+[ext_resource type="Texture2D" uid="uid://cufbw8bm2r1is" path="res://Assets/Enemy Variations/Rifle/Shooting.png" id="4_yx8fa"]
 [ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="5_wkrbm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
@@ -13,7 +14,27 @@ light_mode = 2
 atlas = ExtResource("3_05ne3")
 region = Rect2(0, 0, 23, 38)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yx8fa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fx6s"]
+atlas = ExtResource("4_yx8fa")
+region = Rect2(0, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khqmq"]
+atlas = ExtResource("4_yx8fa")
+region = Rect2(23, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0n1"]
+atlas = ExtResource("4_yx8fa")
+region = Rect2(46, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rskdu"]
+atlas = ExtResource("4_yx8fa")
+region = Rect2(69, 0, 23, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dkwp"]
+atlas = ExtResource("4_yx8fa")
+region = Rect2(92, 0, 23, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eumbf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -22,6 +43,29 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fx6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khqmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rskdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dkwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fx6s")
+}],
+"loop": true,
+"name": &"ShootAN",
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
@@ -60,11 +104,11 @@ max_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-position = Vector2(10, 0)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_yx8fa")
-animation = &"Idle"
+sprite_frames = SubResource("SpriteFrames_eumbf")
+animation = &"ShootAN"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yr4x4")
@@ -85,7 +129,7 @@ wait_time = 0.1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_pxruu")
-blackboard = NodePath("@Node@27744")
+blackboard = NodePath("@Node@25965")
 actor = NodePath("..")
 
 [node name="Follow" type="Node" parent="BeehaveTree"]

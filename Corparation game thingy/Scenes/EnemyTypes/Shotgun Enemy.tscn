@@ -57,8 +57,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bd1su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag8v7")
 }],
-"loop": true,
+"loop": false,
 "name": &"ShootAN",
 "speed": 12.0
 }]
@@ -124,7 +127,7 @@ wait_time = 0.75
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_r3l2h")
-blackboard = NodePath("@Node@28075")
+blackboard = NodePath("@Node@21814")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -135,7 +138,7 @@ script = ExtResource("6_ogk43")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("7_wiv8c")
-wait_time = 2.0
+wait_time = 1.0
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]

@@ -76,6 +76,7 @@ keyType = 2
 position = Vector2(312, 273)
 TilesRight = 40
 TilesDown = 19
+LevelTime = 180
 
 [node name="EnemyPatroalPaths" type="Node" parent="."]
 

@@ -64,10 +64,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6dkwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fx6s")
 }],
 "loop": true,
 "name": &"ShootAN",
-"speed": 24.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yr4x4"]
@@ -105,6 +108,7 @@ ray_count = 25
 max_distance = 150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_kq1ep")
@@ -131,7 +135,7 @@ wait_time = 0.1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_a5yrq")
-blackboard = NodePath("@Node@22491")
+blackboard = NodePath("@Node@21808")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -142,7 +146,7 @@ script = ExtResource("6_piuup")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("7_cq4gb")
-wait_time = 2.0
+wait_time = 1.0
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]

@@ -64,6 +64,7 @@ position = Vector2(136, 23)
 rotation = -3.14159
 TilesRight = 40
 TilesDown = 22
+LevelTime = 120
 
 [node name="EnemyPatroalPaths" type="Node" parent="."]
 
