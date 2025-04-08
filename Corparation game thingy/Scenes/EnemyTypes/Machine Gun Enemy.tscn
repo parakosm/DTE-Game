@@ -135,7 +135,7 @@ wait_time = 0.1
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_a5yrq")
-blackboard = NodePath("@Node@21808")
+blackboard = NodePath("@Node@36323")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -146,7 +146,7 @@ script = ExtResource("6_piuup")
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("7_cq4gb")
-wait_time = 1.0
+wait_time = 0.5
 metadata/_custom_type_script = "uid://kw5jur2q22cq"
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/DelayDecorator"]

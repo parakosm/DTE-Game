@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=38 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
 [ext_resource type="Texture2D" uid="uid://cho2g35rqkbdk" path="res://Assets/player/Player animation.png" id="3_5ixxa"]
@@ -212,6 +212,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3h8g"]
+radius = 5.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_2qvnv")
 
@@ -289,4 +292,17 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "YES"
 
+[node name="Cooldown" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(13, 0)
+shape = SubResource("CircleShape2D_o3h8g")
+
 [connection signal="timeout" from="TimeRemainig" to="." method="_on_time_remainig_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -76,6 +76,10 @@ func Hit(): # On hit by bullet
 		Follow_Target.Killed_Enemy()
 		queue_free() # Destroy the enemy- may change this to stop it moving once we have dead enemies from Sam
 
+func HitMelee():
+	Follow_Target.Killed_Enemy()
+	queue_free() # Destroy the enemy- may change this to stop it moving once we have dead enemies from Sam
+
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity

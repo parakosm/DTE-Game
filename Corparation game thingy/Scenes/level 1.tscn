@@ -11,9 +11,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_bex1k"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 186, 78, 0, 0, 0, 0, 390, 77, 0, 0, 0, 0, 372, 76, 0, 0, 0, 0, 384, 140, 0, 0, 0, 0, 202, 140, 0, 0, 0, 0, 206, 20, 0, 0, 0, 0, 381, 17, 0, 0, 0, 0, 382, 75)
+"points": PackedVector2Array(0, 0, 0, 0, 186, 78, 0, 0, 0, 0, 390, 77, 0, 0, 0, 0, 384, 140, 0, 0, 0, 0, 202, 140, 0, 0, 0, 0, 206, 20, 0, 0, 0, 0, 381, 17, 0, 0, 0, 0, 389, 75)
 }
-point_count = 8
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_f66m2"]
 _data = {
@@ -57,7 +57,7 @@ tile_set = ExtResource("1_o30o5")
 position = Vector2(456, 17)
 
 [node name="Objective" parent="World" instance=ExtResource("7_4ff0u")]
-position = Vector2(73, 330)
+position = Vector2(73, 295)
 
 [node name="Player" parent="World" instance=ExtResource("3_a2n4b")]
 position = Vector2(136, 23)
@@ -95,3 +95,9 @@ pathName = NodePath("../../EnemyPatroalPaths/3")
 
 [node name="Spawner" parent="Misc" instance=ExtResource("6_4ff0u")]
 position = Vector2(51, 78)
+
+[node name="Spawner2" parent="Misc" instance=ExtResource("6_4ff0u")]
+position = Vector2(456, 26)
+
+[node name="Spawner3" parent="Misc" instance=ExtResource("6_4ff0u")]
+position = Vector2(73, 280)

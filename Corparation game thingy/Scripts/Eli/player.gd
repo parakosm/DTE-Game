@@ -5,7 +5,8 @@ var Bullet = preload("res://Scenes/bullet FOR PLAYER.tscn")
 
 @onready var XP = Global.Experience
 var Health = Global.PlayerHealth
-
+var melee = "false"
+var cooldown = false
 var speed = 42 # Nobody change this variable
 @export_group("settings")
 @export var TilesRight = 39
@@ -36,6 +37,8 @@ func get_input():
 	velocity = input_direction * speed
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
+	if Input.is_action_pressed("Melee"):
+		Melee()
 
 func _physics_process(delta):
 	LevelTime = time_remainig.time_left
@@ -51,6 +54,7 @@ func shoot():
 	b.transform = $Marker2D.global_transform
 	$AnimatedSprite2D.play("ShootAN")
 	$AnimatedSprite2D.frame = rng.randf_range(1,2)
+	Global.Spotted = true
 
 func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
 	XP += 10
@@ -70,3 +74,23 @@ func player():# used so other scrpits knows this is the player
 
 func _on_time_remainig_timeout():
 	get_tree().change_scene_to_file("res://Scenes/Death Screen.tscn")# change to end game screen when added
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("Pathfind"):
+		melee = body
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.has_method("Pathfind"):
+		melee = "false"
+		
+func Melee():
+	if str(melee) != "false" and cooldown == false:
+		melee.HitMelee()
+		cooldown = true
+		$Cooldown.start()
+
+
+func _on_cooldown_timeout() -> void:
+	cooldown = false
