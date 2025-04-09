@@ -118,11 +118,11 @@ radius = 7.0
 position = Vector2(10, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_doxfm")
-blackboard = NodePath("@Node@30589")
+blackboard = NodePath("@Node@28388")
 actor = NodePath("..")
 
 [node name="Follow" type="Node" parent="BeehaveTree"]

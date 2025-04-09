@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgjoxhjkpfbeh"]
 
 [ext_resource type="Script" uid="uid://bd3o1aal23tan" path="res://Scripts/Gabriel/bullet_for_player.gd" id="1_8fgt3"]
-[ext_resource type="Texture2D" uid="uid://c1ofh5d04r56d" path="res://icon.svg" id="2_0mwxw"]
+[ext_resource type="Texture2D" uid="uid://cuvjlf0rebykd" path="res://Assets/Enemys/bullet.png" id="2_8fgt3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oduel"]
 light_mode = 2
@@ -17,8 +17,8 @@ script = ExtResource("1_8fgt3")
 material = SubResource("CanvasItemMaterial_oduel")
 position = Vector2(-2.38419e-07, 0)
 rotation = 1.5708
-scale = Vector2(0.0466283, 0.0466283)
-texture = ExtResource("2_0mwxw")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8fgt3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oduel")

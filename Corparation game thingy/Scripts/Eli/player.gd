@@ -17,7 +17,7 @@ var speed = 42 # Nobody change this variable
 @onready var time_remainig = $TimeRemainig
 @onready var health = $Camera2D/CanvasLayer/Control/Health
 var rng = RandomNumberGenerator.new()
-
+var ShootCooldown = false
 func _ready():
 	# loads in the camra limits and defolt xp values
 	# camra limiting stops camra from seaing outside the map
@@ -49,12 +49,16 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position()) # Sets player facing, determineds by the mouse position function.
 
 func shoot():
-	var b = Bullet.instantiate()
-	owner.add_child(b)
-	b.transform = $Marker2D.global_transform
-	$AnimatedSprite2D.play("ShootAN")
-	$AnimatedSprite2D.frame = rng.randf_range(1,2)
-	Global.Spotted = true
+	if ShootCooldown == false:
+		var b = Bullet.instantiate()
+		owner.add_child(b)
+		b.transform = $Marker2D.global_transform
+		$AnimatedSprite2D.play("ShootAN")
+		$AnimatedSprite2D.frame = rng.randf_range(1,2)
+		Global.Spotted = true
+		$ShootCooldown.start()
+		ShootCooldown = true
+
 
 func Killed_Enemy(): # When an enemy is killed, the player gets 10XP and the console notes the current XP total.
 	XP += 10
@@ -94,3 +98,7 @@ func Melee():
 
 func _on_cooldown_timeout() -> void:
 	cooldown = false
+
+
+func _on_shoot_cooldown_timeout():
+	ShootCooldown = false
