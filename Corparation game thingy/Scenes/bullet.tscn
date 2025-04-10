@@ -10,6 +10,9 @@ light_mode = 2
 radius = 3.0
 
 [node name="Bullet" type="Area2D"]
+process_thread_group = 2
+process_thread_group_order = 1
+process_thread_messages = 2
 collision_layer = 2
 script = ExtResource("1_oduel")
 
@@ -17,7 +20,7 @@ script = ExtResource("1_oduel")
 material = SubResource("CanvasItemMaterial_oduel")
 position = Vector2(-2.38419e-07, 0)
 rotation = 1.5708
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
