@@ -35,7 +35,7 @@ signal VisionExited(body)
 @export_group("Optimizations")
 ## Introduce a minimum time (in msec) before recalculating. Useful to improve performance for slow moving objects,
 ## or objects where precise updates on every physics update are not necessary
-@export var minimum_recalculate_time_msec = 0
+@export var minimum_recalculate_time_msec = 0.1
 ## Should the vision cone be recalculated when the object hasn't moved?
 ## Set this to false to optimize by not recalculating the area if the object hasn't moved.
 ## May incorrectly avoid an update if the object rotates in place or the scene layout changes at runtime

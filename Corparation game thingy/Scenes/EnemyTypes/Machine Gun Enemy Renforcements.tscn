@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dgthtsdfpof24"]
+[gd_scene load_steps=17 format=3 uid="uid://dgthtsdfpof24"]
 
 [ext_resource type="Script" uid="uid://b7kjflfbkqh7n" path="res://Scripts/Gabriel/enemy_template_renforcements.gd" id="1_gx8ks"]
 [ext_resource type="PackedScene" uid="uid://cg0em3ad7vvio" path="res://addons/vision_cone_2d/vision_cone_ENEMY.tscn" id="2_i6ud5"]
 [ext_resource type="Texture2D" uid="uid://vpj862vrya5" path="res://Assets/Enemy Variations/Rifle/idle.png" id="3_05ne3"]
-[ext_resource type="Script" uid="uid://1skscbeawr4t" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_pxruu"]
 [ext_resource type="Texture2D" uid="uid://cufbw8bm2r1is" path="res://Assets/Enemy Variations/Rifle/Shooting.png" id="4_yx8fa"]
-[ext_resource type="Script" uid="uid://c5fssp56ff42t" path="res://Scripts/Gabriel/EnemyTemplate AI Scripts/follow.gd" id="5_wkrbm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7vx65"]
 light_mode = 2
@@ -98,9 +96,12 @@ script = ExtResource("1_gx8ks")
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_i6ud5")]
 use_parent_material = true
 rotation = -1.5708
-angle_deg = 40
-ray_count = 25
+render = true
+angle_deg = 1
+ray_count = 1
 max_distance = 150.0
+debug_lines = true
+minimum_recalculate_time_msec = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -126,14 +127,6 @@ position = Vector2(10, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 0.25
-
-[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("4_pxruu")
-blackboard = NodePath("@Node@24317")
-actor = NodePath("..")
-
-[node name="Follow" type="Node" parent="BeehaveTree"]
-script = ExtResource("5_wkrbm")
 
 [node name="Control" type="Control" parent="."]
 use_parent_material = true
@@ -172,9 +165,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="VisionEnterd" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_enterd"]
 [connection signal="VisionExited" from="VisionCone2D2" to="." method="_on_vision_cone_2d_2_vision_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
-[connection signal="path_changed" from="NavigationAgent2D" to="BeehaveTree/Follow" method="_on_navigation_agent_2d_path_changed"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
-[connection signal="target_reached" from="NavigationAgent2D" to="BeehaveTree/Follow" method="_on_navigation_agent_2d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
-[connection signal="follow" from="BeehaveTree/Follow" to="." method="_on_follow_follow"]

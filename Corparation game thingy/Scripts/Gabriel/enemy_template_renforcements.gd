@@ -18,6 +18,8 @@ var lookSpeed = 4
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	Pathfind(delta)
+	if Global.Spotted == true:
+		_on_follow_follow()
 
 func Pathfind(delta):#moves the enemy closer to the next pathfind point
 	Current_Position = self.global_position

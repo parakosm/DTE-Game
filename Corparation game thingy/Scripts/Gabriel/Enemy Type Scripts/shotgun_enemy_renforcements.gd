@@ -20,6 +20,8 @@ var rng = RandomNumberGenerator.new()
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	Pathfind(delta)# will conpute the pathfinding to keep the enemys moving
+	if Global.Spotted == true:
+		_on_follow_follow()
 
 func Pathfind(delta):#moves the enemy closer to the next pathfind point
 	Current_Position = self.global_position
