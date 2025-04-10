@@ -27,6 +27,7 @@ func _ready():
 	time_remainig.start()
 	xp.text = str("XP: ", XP)
 	health.play("10")
+	self.physics_interpolation_mode= Node.PHYSICS_INTERPOLATION_MODE_OFF
 
 func get_input():
 	if Input.is_action_pressed("shift"): # If the shift key is held down, the player speed is increased. Otherwise, the else sets speed to the normal value.
@@ -40,7 +41,7 @@ func get_input():
 	if Input.is_action_pressed("Melee"):
 		Melee()
 
-func _physics_process(delta):
+func _process(delta):
 	LevelTime = time_remainig.time_left
 	LevelTime = roundi(LevelTime)
 	timer.text = str("Time Remaning: ", LevelTime , " Seconds")
@@ -51,12 +52,12 @@ func _physics_process(delta):
 func shoot():
 	if ShootCooldown == false:
 		var b = Bullet.instantiate()
-		owner.add_child(b)
 		b.transform = $Marker2D.global_transform
 		$AnimatedSprite2D.play("ShootAN")
 		$AnimatedSprite2D.frame = rng.randf_range(1,2)
 		Global.Spotted = true
 		$ShootCooldown.start()
+		owner.add_child(b)
 		ShootCooldown = true
 
 

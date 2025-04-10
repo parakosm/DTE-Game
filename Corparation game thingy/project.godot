@@ -13,6 +13,7 @@ config_version=5
 config/name="Corporation"
 run/main_scene="uid://dfl5qxttbb7eq"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.156643, 0.385433, 0.559136, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -69,7 +70,8 @@ Melee={
 
 [physics]
 
-common/physics_ticks_per_second=15
+common/physics_ticks_per_second=12
+common/physics_interpolation=true
 
 [rendering]
 

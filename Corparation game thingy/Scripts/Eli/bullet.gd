@@ -2,6 +2,8 @@ extends Area2D
 
 var speed = 256
 
+func _ready():
+	position += transform.x * speed * 0.01
 
 func _physics_process(delta):
 	position += transform.x * speed * delta

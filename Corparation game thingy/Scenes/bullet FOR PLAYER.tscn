@@ -10,9 +10,6 @@ light_mode = 2
 radius = 3.0
 
 [node name="Bullet" type="Area2D"]
-process_thread_group = 2
-process_thread_group_order = 0
-process_thread_messages = 2
 collision_layer = 2
 script = ExtResource("1_8fgt3")
 

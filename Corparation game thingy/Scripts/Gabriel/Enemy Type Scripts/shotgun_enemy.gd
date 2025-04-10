@@ -28,7 +28,7 @@ func _ready():
 	_on_partrol_patrol()
 
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta) -> void:
+func _process(delta) -> void:
 	Pathfind(delta)# will conpute the pathfinding to keep the enemys moving
 
 func Pathfind(delta):
@@ -64,10 +64,11 @@ func Shoot():
 		$AnimatedSprite2D.play("ShootAN")
 		for i in range(0, 10):# spawns more bullets at once
 			var b = Bullet.instantiate()
-			owner.add_child(b)#spawn a bullet at marker
 			b.transform = $Marker2D.global_transform
 			b.global_rotation = $Marker2D.global_rotation + rng.randf_range(-0.5,0.5)# changes bulet dirction a bit to give more spread
-			
+			owner.add_child(b)#spawn a bullet at marker
+
+		
 func Hit(): # On hit by bullet
 	HP -= 10 # Reduces HP by 10 when hit by bullet
 	progress_bar.visible = true

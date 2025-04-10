@@ -46,10 +46,9 @@ func lookAt(angle, delta):
 func Shoot():
 		#spawn a bullet at marker
 		var b = Bullet.instantiate()
-		get_parent().add_child(b)
 		b.transform = $Marker2D.global_transform
 		$AnimatedSprite2D.play("ShootAN")
-
+		get_parent().add_child(b)
 
 func Hit(): # On hit by bullet
 	HP -= 10 # Reduces HP by 10 when hit by bullet

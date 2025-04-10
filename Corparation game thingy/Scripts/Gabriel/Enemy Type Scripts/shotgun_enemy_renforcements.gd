@@ -49,9 +49,10 @@ func Shoot():
 	$AnimatedSprite2D.play("ShootAN")
 	for i in range(0, 10):# spawns more bullets at once
 		var b = Bullet.instantiate()
-		add_sibling(b)#spawn a bullet at marker
 		b.transform = $Marker2D.global_transform
 		b.global_rotation = $Marker2D.global_rotation + rng.randf_range(-0.5,0.5)# changes bulet dirction a bit to give more spread
+		add_sibling(b)#spawn a bullet at marker
+
 
 func Hit(): # On hit by bullet- had to rewrite this because Gabriel didn't github good :(
 	HP -= 10 # Reduces HP by 10 when hit by bullet

@@ -87,6 +87,9 @@ motion_mode = 1
 script = ExtResource("1_2wplx")
 
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_fqpm1")]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 use_parent_material = true
 rotation = -1.5708
 render = true
@@ -95,6 +98,9 @@ ray_count = 1
 max_distance = 125.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 use_parent_material = true
 position = Vector2(1, 0)
 rotation = 1.5708

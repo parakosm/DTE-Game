@@ -27,7 +27,7 @@ func _ready():
 	_on_partrol_patrol()# starts partoling
 
 # Called every pysics frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta) -> void:
+func _process(delta) -> void:
 	Pathfind(delta)# will conpute the pathfinding to keep the enemys moving
 
 func Pathfind(delta):
@@ -63,9 +63,10 @@ func lookAt(angle, delta):
 func Shoot():
 		#spawn a bullet at marker
 		var b = Bullet.instantiate()
-		owner.add_child(b)
 		b.transform = $Marker2D.global_transform
 		$AnimatedSprite2D.play("ShootAN")
+		owner.add_child(b)
+
 
 func Hit(): # On hit by bullet
 	HP -= 10 # Reduces HP by 10 when hit by bullet
