@@ -303,7 +303,7 @@ position = Vector2(13, 0)
 shape = SubResource("CircleShape2D_o3h8g")
 
 [node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.2
 
 [connection signal="timeout" from="TimeRemainig" to="." method="_on_time_remainig_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

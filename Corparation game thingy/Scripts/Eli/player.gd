@@ -35,7 +35,7 @@ func get_input():
 		speed = 42
 	var input_direction = Input.get_vector("left", "right", "up", "down") #Ensures the player's movement is in the direction that the player chose.
 	velocity = input_direction * speed
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		shoot()
 	if Input.is_action_pressed("Melee"):
 		Melee()
