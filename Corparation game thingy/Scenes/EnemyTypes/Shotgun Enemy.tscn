@@ -123,11 +123,11 @@ radius = 7.0
 position = Vector2(10, 0)
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.75
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("4_r3l2h")
-blackboard = NodePath("@Node@24467")
+blackboard = NodePath("@Node@24945")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
