@@ -96,11 +96,9 @@ script = ExtResource("1_gx8ks")
 [node name="VisionCone2D2" parent="." instance=ExtResource("2_i6ud5")]
 use_parent_material = true
 rotation = -1.5708
-render = true
 angle_deg = 1
 ray_count = 1
 max_distance = 150.0
-debug_lines = true
 minimum_recalculate_time_msec = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

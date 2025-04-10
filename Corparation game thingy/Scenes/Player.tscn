@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cpcafahb7ebw4"]
+[gd_scene load_steps=37 format=3 uid="uid://cpcafahb7ebw4"]
 
 [ext_resource type="Script" uid="uid://crepkgnwucqr5" path="res://Scripts/Eli/player.gd" id="1_2qvnv"]
 [ext_resource type="Texture2D" uid="uid://cho2g35rqkbdk" path="res://Assets/player/Player animation.png" id="3_5ixxa"]
@@ -16,9 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://cd2o703lyicxt" path="res://Assets/health bar/5-10.png" id="6_yoq75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_man6h"]
-radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2768e"]
 radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gntrk"]
@@ -222,20 +219,17 @@ script = ExtResource("1_2qvnv")
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_man6h")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2768e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, 0)
 rotation = 1.5708
 scale = Vector2(0.773328, 0.773328)
 sprite_frames = SubResource("SpriteFrames_gntrk")
+animation = &"Idle"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(14, 0)
+position = Vector2(21, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 show_behind_parent = true

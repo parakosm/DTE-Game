@@ -92,7 +92,6 @@ process_thread_group_order = 0
 process_thread_messages = 0
 use_parent_material = true
 rotation = -1.5708
-render = true
 angle_deg = 1
 ray_count = 1
 max_distance = 125.0
