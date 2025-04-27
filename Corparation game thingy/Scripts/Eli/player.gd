@@ -41,7 +41,7 @@ func get_input():
 	if Input.is_action_pressed("Melee"):
 		Melee()
 
-func _process(delta):
+func _physics_process(delta):
 	LevelTime = time_remainig.time_left
 	LevelTime = roundi(LevelTime)
 	timer.text = str("Time Remaning: ", LevelTime , " Seconds")

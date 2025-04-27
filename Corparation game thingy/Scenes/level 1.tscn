@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d0jtwkmgqomhx"]
+[gd_scene load_steps=13 format=4 uid="uid://d0jtwkmgqomhx"]
 
 [ext_resource type="TileSet" uid="uid://bwis1ia1df3j8" path="res://Assets/tiles and objects/Tile Set 1.tres" id="1_o30o5"]
 [ext_resource type="Script" uid="uid://cixvpv86mdoop" path="res://Scripts/Gabriel/NavLayer.gd" id="2_rwcms"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cyxktt8n27yq7" path="res://Scenes/Spawner.tscn" id="6_4ff0u"]
 [ext_resource type="PackedScene" uid="uid://dsa86bdhkgsv1" path="res://Scenes/EnemyTypes/Machine Gun Enemy.tscn" id="6_ayjtp"]
 [ext_resource type="PackedScene" uid="uid://glq2xgvfmnkc" path="res://Scenes/Elevator Door.tscn" id="6_bex1k"]
+[ext_resource type="AudioStream" uid="uid://c0p775x2eejfe" path="res://Assets/Music/level one song draft one.mp3" id="6_q08mx"]
 [ext_resource type="PackedScene" uid="uid://c5nk617adfc73" path="res://Scenes/objective.tscn" id="7_4ff0u"]
 [ext_resource type="PackedScene" uid="uid://40egq1pg1asa" path="res://Scenes/EnemyTypes/Shotgun Enemy.tscn" id="7_q08mx"]
 
@@ -65,6 +66,11 @@ rotation = -3.14159
 TilesRight = 40
 TilesDown = 22
 LevelTime = 120
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
+stream = ExtResource("6_q08mx")
+autoplay = true
+parameters/looping = true
 
 [node name="EnemyPatroalPaths" type="Node" parent="."]
 

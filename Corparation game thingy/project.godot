@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Corporation"
+config/tags=PackedStringArray("school", "top_down_stealth_shooter")
 run/main_scene="uid://dfl5qxttbb7eq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.156643, 0.385433, 0.559136, 1)
@@ -25,6 +26,12 @@ Global="*res://Scripts/Eli/global.gd"
 [display]
 
 window/stretch/mode="viewport"
+
+[editor]
+
+movie_writer/mjpeg_quality=0.1
+movie_writer/movie_file="C:/Users/rendl_fcy2rw3/Desktop/DTE-Game/Corparation game thingy/work.avi"
+movie_writer/fps=24
 
 [editor_plugins]
 
