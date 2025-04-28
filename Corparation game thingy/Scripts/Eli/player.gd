@@ -27,7 +27,6 @@ func _ready():
 	time_remainig.start()
 	xp.text = str("XP: ", XP)
 	health.play("10")
-	self.physics_interpolation_mode= Node.PHYSICS_INTERPOLATION_MODE_OFF
 
 func get_input():
 	if Input.is_action_pressed("shift"): # If the shift key is held down, the player speed is increased. Otherwise, the else sets speed to the normal value.
